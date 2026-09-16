@@ -281,20 +281,20 @@ function onHalt() {
 function seedMockLog() {
   els.nokey.hidden = true;
   els.task.value = "Find the cheapest nonstop SFO→AUS next Friday and hold on the checkout screen.";
-  setArmed(true);
   appendLog("run: Find the cheapest nonstop SFO→AUS next Friday and hold on the checkout screen.", "step");
   appendLog("step 1/12", "step");
   appendLog("→ read_tab()", "tool");
   appendLog("← [UNTRUSTED PAGE CONTENT] Google Flights — SFO to AUS…", "info");
   appendLog("step 2/12", "step");
   appendLog("→ click(target: \"#search-button\")", "hands");
-  appendLog("← clicked \"Search\"", "info");
-  appendLog("step 3/12", "step");
-  appendLog("→ goto(url: \"https://checkout.example/hold\")", "hands");
   appendLog("Unstamped. Human must stamp before Clip clicks.", "block");
-  appendLog("Blocked: checkout needs a fresh stamp. Use done.", "info");
+  setArmed(true);
+  appendLog("STAMPED. Clip's hands are armed.", "hands");
+  appendLog("step 3/12", "step");
+  appendLog("→ click(target: \"#search-button\")", "hands");
+  appendLog("← clicked \"Search\"", "info");
   appendLog("step 4/12", "step");
-  appendLog("done: Cheapest nonstop is $118 on Alaska, Fri 6:40a. Stopped before checkout — stamp to continue.", "step");
+  appendLog("done: Cheapest nonstop is $118 on Alaska, Fri 6:40a. Stopped before checkout — your call.", "step");
   setStatus("done");
 }
 
