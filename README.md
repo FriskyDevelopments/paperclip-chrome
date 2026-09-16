@@ -17,3 +17,9 @@ Options: paste an xAI key. It stays on the machine. Run loop.
 ## SKU
 $29 → $19 on Whop. The $49 kit already includes this room.
 https://clip.friskydev.com/chrome
+
+## Store
+Dev: Chrome → Extensions → Developer mode → Load unpacked → `extension/`.
+Chrome Web Store: link coming after review.
+Privacy policy: https://friskydevelopments.github.io/paperclip-chrome/privacy.html
+Store zip: `scripts/build-store-zip.sh` → `dist/frisky-paperclip-<version>.zip`.
