@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paperclip options</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <main class="opt-shell">
+    <div class="opt-head">
+      <img class="mark" src="icons/icon-48.png" alt="FR!sky husky mark" width="32" height="32" />
+      <h1 class="opt-title">PAPERCLIP OPTIONS</h1>
+    </div>
+    <p class="opt-sub">The desk runs on your own xAI key. Nothing here talks to Frisky servers.</p>
+
+    <div class="field">
+      <label for="xai-key">xAI API key</label>
+      <input id="xai-key" type="password" placeholder="xai-…" autocomplete="off" spellcheck="false" />
+      <div class="hint">Get a key at <a href="https://x.ai" target="_blank" rel="noreferrer">x.ai</a> → console. Used only to call api.x.ai when you press RUN.</div>
+      <div id="key-flag" class="saved-flag" hidden>key saved ✓</div>
+    </div>
+
+    <div class="field">
+      <label for="sidecar">Clip sidecar endpoint</label>
+      <input id="sidecar" type="text" placeholder="http://127.0.0.1:7429" autocomplete="off" spellcheck="false" />
+      <div class="hint">Local only. Leave the default unless you moved the sidecar. Falls back to the native host com.friskydev.paperclip.</div>
+    </div>
+
+    <div class="opt-actions">
+      <button id="save" class="btn btn-run" type="button">SAVE</button>
+      <span id="status" class="status-line" role="status"></span>
+    </div>
+
+    <div class="opt-note">Your key never leaves this machine. It lives in chrome.storage.local and is sent only to api.x.ai, only when you run the loop.</div>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
