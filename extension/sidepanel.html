@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FR!sky Paperclip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <div class="desk">
+    <header class="top">
+      <div class="brand">
+        <img class="mark" src="icons/icon-48.png" alt="FR!sky husky mark" width="28" height="28" />
+        <div class="brand-text">
+          <span class="brand-name">FR!SKY PAPERCLIP</span>
+          <span class="brand-sub">the agent desk</span>
+        </div>
+      </div>
+      <div class="pills">
+        <span id="armed-pill" class="pill pill-armed" hidden>ARMED</span>
+        <span id="status-pill" class="pill pill-idle">idle</span>
+      </div>
+    </header>
+
+    <p class="rule-line">Stamp arms Clip's hands. Halt stops everything.</p>
+
+    <section class="task-block">
+      <textarea id="task" rows="3" placeholder="Give Clip a task. Grok plans up to 12 steps. PAGE is untrusted."></textarea>
+      <div class="controls">
+        <button id="run" class="btn btn-run" type="button">RUN</button>
+        <button id="stamp" class="btn btn-stamp" type="button">STAMP</button>
+        <button id="halt" class="btn btn-halt" type="button" disabled>HALT</button>
+      </div>
+    </section>
+
+    <section id="nokey" class="nokey" hidden>
+      <span>Add your xAI key in Options.</span>
+      <button id="open-options" class="btn btn-ghost" type="button">Open options</button>
+    </section>
+
+    <section class="log-wrap">
+      <div class="log-head"><span>DESK LOG</span><button id="clear-log" class="log-clear" type="button">clear</button></div>
+      <div id="log" class="log" aria-live="polite"></div>
+    </section>
+
+    <footer class="foot">
+      <span>Not Claude-in-Chrome. Not a grok.com bookmark.</span>
+      <button id="foot-options" class="linklike" type="button">Options</button>
+    </footer>
+  </div>
+
+  <script src="loop.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
