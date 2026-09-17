@@ -10,18 +10,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --cream-a: #f1eee7; --cream-b: #d8e2dc;
-      --ink: #071012; --body: #475755; --muted: #8fa2a3;
-      --hairline: #0710122e; --label-red: #7e333c;
-      --red: #ff334e; --mint: #22c7a8; --panel: #f9fcfacc;
+      --void: #030708; --panel: #0b1214;
+      --text: #f4fbf8; --muted: #8fa2a3; --faint: #536769;
+      --hairline: #9cebdc26;
+      --red: #ff334e; --coral: #ff6b7a; --mint: #22c7a8;
       --font-display: "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;
       --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
       --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { color-scheme: dark; }
     body {
       font-family: var(--font-body); font-size: 16px; line-height: 1.65;
-      color: var(--ink); background: linear-gradient(140deg, var(--cream-a), var(--cream-b));
+      color: var(--text);
+      background: linear-gradient(160deg, #07010f, var(--void) 55%);
       -webkit-font-smoothing: antialiased;
     }
     ::selection { background: var(--red); color: #fff; }
@@ -29,56 +31,56 @@
     .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 26px; }
     .brand-name {
       font-family: var(--font-display); font-weight: 800; font-size: 20px;
-      line-height: 0.9; letter-spacing: -0.02em; text-transform: uppercase; color: var(--ink);
+      line-height: 0.9; letter-spacing: -0.02em; text-transform: uppercase; color: var(--text);
     }
     .brand-name em {
       font-style: normal; color: transparent;
-      -webkit-text-stroke: 1px var(--red); text-shadow: 0 0 28px #ff334e21;
+      -webkit-text-stroke: 1px var(--coral); text-shadow: 0 0 28px #ff334e33;
     }
     .chapter {
       display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
       padding-bottom: 8px; margin-bottom: 26px; border-bottom: 1px solid var(--hairline);
       font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--ink);
+      text-transform: uppercase; color: var(--muted);
     }
     .chapter .ch-num { color: var(--red); font-weight: 600; }
     h1 {
       font-family: var(--font-display); font-weight: 800; font-size: 44px;
       line-height: 0.83; letter-spacing: -0.055em; text-transform: uppercase;
-      color: var(--ink); margin-bottom: 10px;
+      color: var(--text); margin-bottom: 10px;
     }
     h1 em {
       font-style: normal; color: transparent;
-      -webkit-text-stroke: 1px var(--red); text-shadow: 0 0 28px #ff334e21;
+      -webkit-text-stroke: 1px var(--coral); text-shadow: 0 0 28px #ff334e33;
     }
     .meta {
       font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
-      color: var(--muted); margin-bottom: 30px;
+      color: var(--faint); margin-bottom: 30px;
     }
     h2 {
       font-family: var(--font-mono); font-weight: 500; font-size: 10px;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--label-red);
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral);
       border-top: 1px solid var(--hairline); padding-top: 22px; margin: 26px 0 10px;
     }
-    p { margin-bottom: 12px; color: var(--body); }
-    ul { margin: 0 0 12px 20px; color: var(--body); }
+    p { margin-bottom: 12px; color: var(--muted); }
+    ul { margin: 0 0 12px 20px; color: var(--muted); }
     li { margin-bottom: 5px; }
     code {
-      font-family: var(--font-mono); font-size: 13px; color: var(--ink);
-      background: #ffffffb3; border: 1px solid var(--hairline);
+      font-family: var(--font-mono); font-size: 13px; color: var(--text);
+      background: #f4fbf80d; border: 1px solid var(--hairline);
       padding: 1px 6px; border-radius: 5px;
     }
-    a { color: var(--red); }
+    a { color: var(--coral); }
     .card {
       background: var(--panel); border: 1px solid var(--hairline); border-radius: 8px;
       padding: 18px 20px; margin: 18px 0;
     }
-    .card p { color: var(--body); margin-bottom: 0; }
-    .card strong { color: var(--ink); }
+    .card p { color: var(--muted); margin-bottom: 0; }
+    .card strong { color: var(--text); }
     .foot {
       margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--hairline);
       font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--muted);
+      text-transform: uppercase; color: var(--faint);
     }
   </style>
 </head>
