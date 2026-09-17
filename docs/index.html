@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Install FR!sky Paperclip — the agent desk for Chrome</title>
+  <meta name="description" content="Clip in. Grok plans. Clip clicks only after you stamp. Install the FR!sky Paperclip agent desk for Chrome and put it on your Mac with one brew command." />
+  <link rel="icon" type="image/svg+xml" href="assets/husky.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="install.css" />
+</head>
+<body>
+  <div id="progress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#act-01">Skip to install</a>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <header class="hero" id="top">
+      <canvas id="field" aria-hidden="true"></canvas>
+      <div class="wrap hero-inner">
+        <div class="hero-kicker reveal">
+          <img src="assets/husky.svg" alt="FR!sky husky mark" width="44" height="44" />
+          <p class="wordmark"><b>FR!SKY PAPERCLIP</b> — THE AGENT DESK</p>
+        </div>
+        <h1 class="hero-title">
+          <span class="metal" data-scramble>CLIP</span>
+          <span class="glow" data-scramble>IN.</span>
+        </h1>
+        <p class="hero-pitch reveal" style="--d:.15s">
+          Not Claude-in-Chrome. Not a grok.com bookmark.
+          <em>Grok plans.</em> <b>Clip clicks only after you stamp.</b>
+        </p>
+        <div class="hero-cta reveal" style="--d:.3s">
+          <a class="btn btn-heat" href="#act-01" data-magnetic>Add to Chrome <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="https://clip.friskydev.com/chrome" data-magnetic>The desk <span class="arrow">↗</span></a>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#act-01">Scroll<span class="beam"></span></a>
+    </header>
+
+    <!-- ============ ACT 01 — ADD TO CHROME ============ -->
+    <section class="act" id="act-01" aria-labelledby="act-01-title">
+      <div class="wrap">
+        <div class="act-head reveal">
+          <span class="act-no">ACT 01</span>
+          <h2 class="act-title" id="act-01-title">Add to Chrome</h2>
+        </div>
+        <p class="act-lede reveal" style="--d:.1s">
+          One click and the desk moves into your side panel.
+          Clip reads the tab you point it at and does nothing else until you say so.
+        </p>
+        <div class="install-panel reveal" style="--d:.2s">
+          <a class="btn btn-heat" id="cws-btn" href="#sideload" data-magnetic>Add to Chrome <span class="arrow">→</span></a>
+          <p class="browser-note" id="browser-note"><span class="dot"></span><span id="browser-note-text">Checking your browser…</span></p>
+          <div>
+            <span class="review-flag">Chrome Web Store review in flight</span>
+          </div>
+          <details class="sideload" id="sideload">
+            <summary>Sideload today — 60 seconds</summary>
+            <ol>
+              <li>Grab the source: <a href="https://github.com/FriskyDevelopments/paperclip-chrome">github.com/FriskyDevelopments/paperclip-chrome</a> — clone it or download the zip and unzip.</li>
+              <li>Open <code>chrome://extensions</code> and flip <b>Developer mode</b> on (top right).</li>
+              <li>Hit <b>Load unpacked</b> and pick the repo's <code>extension/</code> folder.</li>
+              <li>Pin FR!sky Paperclip, open the side panel, and you're at the desk.</li>
+            </ol>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACT 02 — THE DESK ON YOUR MAC ============ -->
+    <section class="act" id="act-02" aria-labelledby="act-02-title">
+      <div class="wrap">
+        <div class="act-head reveal">
+          <span class="act-no">ACT 02</span>
+          <h2 class="act-title" id="act-02-title">The desk on your Mac</h2>
+        </div>
+        <p class="act-lede reveal" style="--d:.1s">
+          The companion <code>frisky-paperclip</code> CLI drives the desk from your terminal.
+          One brew command. No daemons you didn't ask for.
+        </p>
+        <div class="brew-block reveal" id="brew-block" style="--d:.2s">
+          <p class="brew-cmd" id="brew-cmd"><span class="prompt">$</span><span class="cmd-head">brew install</span> FriskyDevelopments/paperclip/frisky-paperclip</p>
+          <button class="copy-btn" id="copy-btn" type="button" aria-describedby="brew-cmd">Copy</button>
+        </div>
+        <p class="brew-alt reveal" style="--d:.3s">
+          Not on a Mac? The desk is web too — <a href="https://clip.friskydev.com">clip.friskydev.com</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ ACT 03 — GIVE IT HANDS ============ -->
+    <section class="act" id="act-03" aria-labelledby="act-03-title">
+      <div class="wrap">
+        <div class="act-head reveal">
+          <span class="act-no">ACT 03</span>
+          <h2 class="act-title" id="act-03-title">Give it hands</h2>
+        </div>
+        <p class="act-lede reveal" style="--d:.1s">
+          Paste your xAI key in Options and the desk is live.
+          This is the real product, mid-run — no mockup.
+        </p>
+        <div class="shot-grid">
+          <figure class="device reveal" style="--d:.15s">
+            <div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>side panel — stamped run</span></div>
+            <img src="assets/desk.png" alt="FR!sky Paperclip side panel mid-run: desk log shows Grok planning steps, an unstamped click blocked, a stamp arming Clip's hands, and the run completing." width="1280" height="800" />
+          </figure>
+          <ul class="trust-list">
+            <li class="reveal" style="--d:.2s"><b>Your key never leaves the machine.</b>Stored in chrome.storage.local. Page content goes to api.x.ai only when you press RUN.</li>
+            <li class="reveal" style="--d:.3s"><b>Grok plans max 12 steps.</b>The loop can't spin forever. Every step, tool call, and result shows in the desk log.</li>
+            <li class="reveal" style="--d:.4s"><b>Page content is untrusted data.</b>Never instructions. Unstamped HANDS calls are blocked and reported.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACT 04 — STAMP & GO + SEAT ============ -->
+    <section class="act" id="act-04" aria-labelledby="act-04-title">
+      <div class="wrap">
+        <div class="act-head reveal">
+          <span class="act-no">ACT 04</span>
+          <h2 class="act-title" id="act-04-title">Stamp &amp; go</h2>
+        </div>
+        <p class="act-lede reveal" style="--d:.1s">
+          Stamp arms Clip's hands. Halt stops everything. That's the whole safety model —
+          and you can see both in the log.
+        </p>
+        <div class="stamp-hero" aria-hidden="true">
+          <span class="pill-big pill-stamp reveal" style="--d:.15s">STAMP</span>
+          <span class="pill-amp reveal" style="--d:.25s">/</span>
+          <span class="pill-big pill-halt reveal" style="--d:.35s">HALT</span>
+        </div>
+        <div class="seat-panel reveal" style="--d:.2s">
+          <div>
+            <div class="price-line">
+              <span class="price-now">$19</span>
+              <span class="price-was">$29</span>
+            </div>
+            <p class="price-sub">Launch price. One seat, your key, your machine. <b>Included in the $49 FR!sky kit.</b></p>
+            <a class="btn btn-pop" href="https://whop.com/checkout/plan_4WRbqNWxmh5SG" data-magnetic>Claim a seat on Whop <span class="arrow">→</span></a>
+            <p class="seat-tag">Checkout on Whop · instant access</p>
+          </div>
+          <img src="assets/husky.svg" alt="" width="160" height="160" style="border-radius:24px;justify-self:center;" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot-row">
+      <div class="foot-brand">
+        <img src="assets/husky.svg" alt="" width="30" height="30" />
+        <span>A Frisky Developments joint · 2026</span>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="privacy.html">Privacy</a>
+        <a href="https://github.com/FriskyDevelopments/paperclip-chrome">GitHub</a>
+        <a href="https://clip.friskydev.com/chrome">The desk</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="install.js"></script>
+</body>
+</html>

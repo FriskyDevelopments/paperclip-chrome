@@ -13,11 +13,13 @@ The moment the sidecar becomes a compiled macOS binary or a bundled `.app` distr
 
 ### Prerequisites (human steps, once)
 
-1. Apple Developer Program membership — $99/yr.
-2. A **Developer ID Application** certificate in the Mac's keychain (create via developer.apple.com → Certificates, or Xcode → Settings → Accounts → Manage Certificates).
-3. Notarization credentials: either an App Store Connect API key (`.p8` + key id + issuer id) or an app-specific password.
+The Apple Developer Program account already exists (confirmed 2026-09-16) — do **not** re-enroll. A Google developer account exists too. What's missing is local signing material on this Mac: zero code-signing identities and no notarytool credential profile.
+
+1. Apple Developer Program membership — **already active**, $99/yr handled.
+2. A **Developer ID Application** certificate in the Mac's keychain. This is the first real step: sign in to the existing account at developer.apple.com → Certificates → create a Developer ID Application certificate, download it, and install it into the login keychain (or Xcode → Settings → Accounts → Manage Certificates).
+3. Notarization credentials: either an App Store Connect API key (`.p8` + key id + issuer id) or an app-specific password, then store it as a profile: `xcrun notarytool store-credentials …`.
 4. Verify an identity exists: `security find-identity -v -p codesigning` should list "Developer ID Application: …".
-   As of 2026-09-16 this Mac has **zero** code-signing identities (verified with that command), so enrollment + certificate creation is the first human step.
+   As of 2026-09-16 this Mac has **zero** code-signing identities (verified with that command), so certificate creation (step 2) — not program enrollment — is the first human step.
 
 ### Sign
 
