@@ -18,6 +18,12 @@ Options: paste an xAI key. It stays on the machine. Run loop.
 $29 → $19 on Whop. The $49 kit already includes this room.
 https://clip.friskydev.com/chrome
 
+## Mac app
+`macos/` — native menu-bar desk (⌥⌘P, floating panel, bundled web desk).
+Status: in development, targeting the Mac App Store.
+Dev build (no Xcode needed): `macos/build-app.sh` → `macos/dist/FR!sky Paperclip.app`.
+Submission runbook: `macos/APPSTORE.md`; listing copy: `store/appstore-listing.md`.
+
 ## Store
 Dev: Chrome → Extensions → Developer mode → Load unpacked → `extension/`.
 Chrome Web Store: link coming after review.
