@@ -123,7 +123,7 @@ const brewBlock = document.getElementById("brew-block");
 
 function burst(x, y) {
   if (REDUCED) return;
-  const colors = ["#b8ff3c", "#ffd100", "#00e5ff", "#f7f5f2"];
+  const colors = ["#ff334e", "#22c7a8", "#f1b75c", "#9cebdc"];
   for (let i = 0; i < 14; i++) {
     const p = document.createElement("span");
     p.className = "burst";
@@ -198,14 +198,14 @@ function sizeCanvas() {
 function seedParticles() {
   const r = hero.getBoundingClientRect();
   const count = Math.min(90, Math.floor((r.width * r.height) / 16000));
-  const palette = ["#ffd100", "#b8ff3c", "#00e5ff", "#4b4059", "#b9b0c9"];
+  const palette = ["#22c7a8", "#9cebdc", "#ff6b7a", "#9cebdc", "#536769"];
   particles = Array.from({ length: count }, () => ({
     x: Math.random() * r.width,
     y: Math.random() * r.height,
     r: 0.6 + Math.random() * 1.8,
     vx: (Math.random() - 0.5) * 0.22,
     vy: (Math.random() - 0.5) * 0.22,
-    a: 0.12 + Math.random() * 0.4,
+    a: 0.08 + Math.random() * 0.3,
     c: palette[(Math.random() * palette.length) | 0],
   }));
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,66 +7,89 @@
   <meta name="description" content="FR!sky Paperclip privacy policy. Your key stays on your machine. Page content goes to api.x.ai only when you run the loop." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --void: #07010f; --panel: #16121f; --panel-2: #1c1728;
-      --text: #f7f5f2; --muted: #b9b0c9; --line: #4b4059;
-      --heat: #ffd100; --pop: #b8ff3c; --cyan: #00e5ff;
-      --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+      --cream-a: #f1eee7; --cream-b: #d8e2dc;
+      --ink: #071012; --body: #475755; --muted: #8fa2a3;
+      --hairline: #0710122e; --label-red: #7e333c;
+      --red: #ff334e; --mint: #22c7a8; --panel: #f9fcfacc;
+      --font-display: "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;
       --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
-      --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font-body); font-size: 16px; line-height: 1.65;
-      color: var(--text); background: var(--void);
+      color: var(--ink); background: linear-gradient(140deg, var(--cream-a), var(--cream-b));
       -webkit-font-smoothing: antialiased;
     }
+    ::selection { background: var(--red); color: #fff; }
     .shell { max-width: 680px; margin: 0 auto; padding: 48px 22px 72px; }
-    .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 34px; }
+    .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 26px; }
     .brand-name {
-      font-family: var(--font-display); font-weight: 800; font-size: 15px;
-      letter-spacing: 0.06em; color: var(--text);
+      font-family: var(--font-display); font-weight: 800; font-size: 20px;
+      line-height: 0.9; letter-spacing: -0.02em; text-transform: uppercase; color: var(--ink);
     }
-    .brand-sub { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .brand-name em {
+      font-style: normal; color: transparent;
+      -webkit-text-stroke: 1px var(--red); text-shadow: 0 0 28px #ff334e21;
+    }
+    .chapter {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+      padding-bottom: 8px; margin-bottom: 26px; border-bottom: 1px solid var(--hairline);
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink);
+    }
+    .chapter .ch-num { color: var(--red); font-weight: 600; }
     h1 {
-      font-family: var(--font-display); font-weight: 800; font-size: 34px;
-      letter-spacing: -0.01em; margin-bottom: 8px;
+      font-family: var(--font-display); font-weight: 800; font-size: 44px;
+      line-height: 0.83; letter-spacing: -0.055em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: 10px;
     }
-    .meta { font-size: 13px; color: var(--muted); margin-bottom: 30px; }
+    h1 em {
+      font-style: normal; color: transparent;
+      -webkit-text-stroke: 1px var(--red); text-shadow: 0 0 28px #ff334e21;
+    }
+    .meta {
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+      color: var(--muted); margin-bottom: 30px;
+    }
     h2 {
-      font-family: var(--font-display); font-weight: 700; font-size: 19px;
-      margin: 30px 0 10px; color: var(--pop);
+      font-family: var(--font-mono); font-weight: 500; font-size: 10px;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--label-red);
+      border-top: 1px solid var(--hairline); padding-top: 22px; margin: 26px 0 10px;
     }
-    p { margin-bottom: 12px; color: #d8d0e4; }
-    ul { margin: 0 0 12px 20px; color: #d8d0e4; }
+    p { margin-bottom: 12px; color: var(--body); }
+    ul { margin: 0 0 12px 20px; color: var(--body); }
     li { margin-bottom: 5px; }
     code {
-      font-family: var(--font-mono); font-size: 13px; color: var(--cyan);
-      background: var(--panel-2); padding: 1px 6px; border-radius: 5px;
+      font-family: var(--font-mono); font-size: 13px; color: var(--ink);
+      background: #ffffffb3; border: 1px solid var(--hairline);
+      padding: 1px 6px; border-radius: 5px;
     }
-    a { color: var(--cyan); }
+    a { color: var(--red); }
     .card {
-      background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+      background: var(--panel); border: 1px solid var(--hairline); border-radius: 8px;
       padding: 18px 20px; margin: 18px 0;
     }
+    .card p { color: var(--body); margin-bottom: 0; }
+    .card strong { color: var(--ink); }
     .foot {
-      margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line);
-      font-size: 12.5px; color: var(--muted);
+      margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--hairline);
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted);
     }
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="brand">
-      <div>
-        <div class="brand-name">FR!SKY PAPERCLIP</div>
-        <div class="brand-sub">the agent desk</div>
-      </div>
+      <div class="brand-name">FR!SKY <em>PAPERCLIP</em></div>
     </div>
+    <div class="chapter"><span>THE AGENT DESK · PRIVACY</span><span class="ch-num">05</span></div>
 
-    <h1>Privacy Policy</h1>
+    <h1>PRIVACY <em>POLICY</em></h1>
     <p class="meta">Effective 2026-09-16 · Contact: <a href="mailto:founder@friskydev.com">founder@friskydev.com</a></p>
 
     <p>FR!sky Paperclip is an agent desk for Chrome built by Frisky Developments. This policy covers everything the extension touches — which is deliberately very little.</p>
@@ -75,16 +98,16 @@
       <p><strong>The short version:</strong> your key stays on your machine, page content goes to api.x.ai only when you press RUN, and nothing is ever sent to Frisky servers. No accounts, no analytics, no data sale.</p>
     </div>
 
-    <h2>Your xAI API key</h2>
+    <h2>01 — Your xAI API key</h2>
     <p>You bring your own xAI API key. It is stored in <code>chrome.storage.local</code> on your machine. It is transmitted only to <code>api.x.ai</code> to authenticate your requests, and only when you press RUN. It is never sent to Frisky Developments or any third party.</p>
 
-    <h2>Page content</h2>
+    <h2>02 — Page content</h2>
     <p>When you run the loop, the extension may read the visible text of your active tab (or request a snapshot from your local Clip sidecar) and include it in the prompt sent to <code>api.x.ai</code>. This happens only on an explicit run that you start. Page content is treated as untrusted data inside the prompt and is never sent anywhere else.</p>
 
-    <h2>Local sidecar</h2>
+    <h2>03 — Local sidecar</h2>
     <p>If you run the optional Clip sidecar, the extension talks to it on <code>http://127.0.0.1:7429</code> or via the native messaging host <code>com.friskydev.paperclip</code>. That traffic never leaves your machine.</p>
 
-    <h2>What we don't do</h2>
+    <h2>04 — What we don't do</h2>
     <ul>
       <li>No accounts, no sign-in.</li>
       <li>No analytics, no telemetry, no crash reporting.</li>
@@ -93,13 +116,13 @@
       <li>No data sale, no data sharing, no advertising.</li>
     </ul>
 
-    <h2>Data retention</h2>
+    <h2>05 — Data retention</h2>
     <p>We hold nothing. All state (your key, the sidecar endpoint, the on-screen log) lives in your browser and disappears when you clear it or uninstall the extension.</p>
 
-    <h2>Changes</h2>
+    <h2>06 — Changes</h2>
     <p>If this policy changes, the change ships with a new extension version and is visible in the source repository.</p>
 
-    <h2>Contact</h2>
+    <h2>07 — Contact</h2>
     <p>Questions: <a href="mailto:founder@friskydev.com">founder@friskydev.com</a></p>
 
     <div class="foot">FR!sky Paperclip · <a href="https://clip.friskydev.com/chrome">clip.friskydev.com/chrome</a></div>

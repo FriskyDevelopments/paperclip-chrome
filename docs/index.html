@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/husky.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="install.css" />
 </head>
 <body>
@@ -24,19 +24,22 @@
       <div class="wrap hero-inner">
         <div class="hero-kicker reveal">
           <img src="assets/husky.svg" alt="FR!sky husky mark" width="44" height="44" />
-          <p class="wordmark"><b>FR!SKY PAPERCLIP</b> — THE AGENT DESK</p>
+          <p class="wordmark">FR!SKY PAPERCLIP — THE AGENT DESK</p>
+        </div>
+        <div class="accent-rules reveal" style="--d:.05s" aria-hidden="true">
+          <span class="rule rule-red"></span><span class="rule rule-gold"></span><span class="rule rule-mint"></span>
         </div>
         <h1 class="hero-title">
-          <span class="metal" data-scramble>CLIP</span>
-          <span class="glow" data-scramble>IN.</span>
+          <span class="ink-word" data-scramble>CLIP</span>
+          <em class="outline-word" data-scramble>IN.</em>
         </h1>
         <p class="hero-pitch reveal" style="--d:.15s">
           Not Claude-in-Chrome. Not a grok.com bookmark.
           <em>Grok plans.</em> <b>Clip clicks only after you stamp.</b>
         </p>
         <div class="hero-cta reveal" style="--d:.3s">
-          <a class="btn btn-heat" href="#act-01" data-magnetic>Add to Chrome <span class="arrow">→</span></a>
-          <a class="btn btn-ghost" href="https://clip.friskydev.com/chrome" data-magnetic>The desk <span class="arrow">↗</span></a>
+          <a class="btn btn-red" href="#act-01" data-magnetic>Add to Chrome <span class="arrow">→</span></a>
+          <a class="btn btn-line-dark" href="https://clip.friskydev.com/chrome" data-magnetic>The desk <span class="arrow">↗</span></a>
         </div>
       </div>
       <a class="scroll-cue" href="#act-01">Scroll<span class="beam"></span></a>
@@ -45,16 +48,14 @@
     <!-- ============ ACT 01 — ADD TO CHROME ============ -->
     <section class="act" id="act-01" aria-labelledby="act-01-title">
       <div class="wrap">
-        <div class="act-head reveal">
-          <span class="act-no">ACT 01</span>
-          <h2 class="act-title" id="act-01-title">Add to Chrome</h2>
-        </div>
+        <div class="chapter reveal"><span class="ch-num">01</span><span class="ch-title">ADD TO CHROME</span></div>
+        <h2 class="act-title reveal" id="act-01-title" style="--d:.05s">ADD TO <em>CHROME</em></h2>
         <p class="act-lede reveal" style="--d:.1s">
           One click and the desk moves into your side panel.
           Clip reads the tab you point it at and does nothing else until you say so.
         </p>
         <div class="install-panel reveal" style="--d:.2s">
-          <a class="btn btn-heat" id="cws-btn" href="#sideload" data-magnetic>Add to Chrome <span class="arrow">→</span></a>
+          <a class="btn btn-ink" id="cws-btn" href="#sideload" data-magnetic>Add to Chrome <span class="arrow">→</span></a>
           <p class="browser-note" id="browser-note"><span class="dot"></span><span id="browser-note-text">Checking your browser…</span></p>
           <div>
             <span class="review-flag">Chrome Web Store review in flight</span>
@@ -75,10 +76,8 @@
     <!-- ============ ACT 02 — THE DESK ON YOUR MAC ============ -->
     <section class="act" id="act-02" aria-labelledby="act-02-title">
       <div class="wrap">
-        <div class="act-head reveal">
-          <span class="act-no">ACT 02</span>
-          <h2 class="act-title" id="act-02-title">The desk on your Mac</h2>
-        </div>
+        <div class="chapter reveal"><span class="ch-num">02</span><span class="ch-title">THE DESK ON YOUR MAC</span></div>
+        <h2 class="act-title reveal" id="act-02-title" style="--d:.05s">THE DESK ON YOUR <em>MAC</em></h2>
         <p class="act-lede reveal" style="--d:.1s">
           The companion <code>frisky-paperclip</code> CLI drives the desk from your terminal.
           One brew command. No daemons you didn't ask for.
@@ -96,10 +95,8 @@
     <!-- ============ ACT 03 — GIVE IT HANDS ============ -->
     <section class="act" id="act-03" aria-labelledby="act-03-title">
       <div class="wrap">
-        <div class="act-head reveal">
-          <span class="act-no">ACT 03</span>
-          <h2 class="act-title" id="act-03-title">Give it hands</h2>
-        </div>
+        <div class="chapter reveal"><span class="ch-num">03</span><span class="ch-title">GIVE IT HANDS</span></div>
+        <h2 class="act-title reveal" id="act-03-title" style="--d:.05s">GIVE IT <em>HANDS</em></h2>
         <p class="act-lede reveal" style="--d:.1s">
           Paste your xAI key in Options and the desk is live.
           This is the real product, mid-run — no mockup.
@@ -110,9 +107,9 @@
             <img src="assets/desk.png" alt="FR!sky Paperclip side panel mid-run: desk log shows Grok planning steps, an unstamped click blocked, a stamp arming Clip's hands, and the run completing." width="1280" height="800" />
           </figure>
           <ul class="trust-list">
-            <li class="reveal" style="--d:.2s"><b>Your key never leaves the machine.</b>Stored in chrome.storage.local. Page content goes to api.x.ai only when you press RUN.</li>
-            <li class="reveal" style="--d:.3s"><b>Grok plans max 12 steps.</b>The loop can't spin forever. Every step, tool call, and result shows in the desk log.</li>
-            <li class="reveal" style="--d:.4s"><b>Page content is untrusted data.</b>Never instructions. Unstamped HANDS calls are blocked and reported.</li>
+            <li class="reveal" style="--d:.2s"><span class="card-label">YOUR KEY</span><b>Your key never leaves the machine.</b>Stored in chrome.storage.local. Page content goes to api.x.ai only when you press RUN.</li>
+            <li class="reveal" style="--d:.3s"><span class="card-label">12 STEPS</span><b>Grok plans max 12 steps.</b>The loop can't spin forever. Every step, tool call, and result shows in the desk log.</li>
+            <li class="reveal" style="--d:.4s"><span class="card-label">UNTRUSTED</span><b>Page content is untrusted data.</b>Never instructions. Unstamped HANDS calls are blocked and reported.</li>
           </ul>
         </div>
       </div>
@@ -121,10 +118,8 @@
     <!-- ============ ACT 04 — STAMP & GO + SEAT ============ -->
     <section class="act" id="act-04" aria-labelledby="act-04-title">
       <div class="wrap">
-        <div class="act-head reveal">
-          <span class="act-no">ACT 04</span>
-          <h2 class="act-title" id="act-04-title">Stamp &amp; go</h2>
-        </div>
+        <div class="chapter reveal"><span class="ch-num">04</span><span class="ch-title">STAMP &amp; GO</span></div>
+        <h2 class="act-title reveal" id="act-04-title" style="--d:.05s">STAMP &amp; <em>GO</em></h2>
         <p class="act-lede reveal" style="--d:.1s">
           Stamp arms Clip's hands. Halt stops everything. That's the whole safety model —
           and you can see both in the log.
@@ -141,7 +136,7 @@
               <span class="price-was">$29</span>
             </div>
             <p class="price-sub">Launch price. One seat, your key, your machine. <b>Included in the $49 FR!sky kit.</b></p>
-            <a class="btn btn-pop" href="https://whop.com/checkout/plan_4WRbqNWxmh5SG" data-magnetic>Claim a seat on Whop <span class="arrow">→</span></a>
+            <a class="btn btn-red" href="https://whop.com/checkout/plan_4WRbqNWxmh5SG" data-magnetic>Claim a seat on Whop <span class="arrow">→</span></a>
             <p class="seat-tag">Checkout on Whop · instant access</p>
           </div>
           <img src="assets/husky.svg" alt="" width="160" height="160" style="border-radius:24px;justify-self:center;" />
