@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FR!sky Paperclip</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="sidepanel.css" />
 </head>
 <body>
@@ -14,16 +14,15 @@
     <header class="top">
       <div class="brand">
         <img class="mark" src="icons/icon-48.png" alt="FR!sky husky mark" width="28" height="28" />
-        <div class="brand-text">
-          <span class="brand-name">FR!SKY PAPERCLIP</span>
-          <span class="brand-sub">the agent desk</span>
-        </div>
+        <h1 class="brand-name">FR!SKY <em>PAPERCLIP</em></h1>
       </div>
       <div class="pills">
         <span id="armed-pill" class="pill pill-armed" hidden>ARMED</span>
         <span id="status-pill" class="pill pill-idle">idle</span>
       </div>
     </header>
+
+    <div class="chapter"><span class="ch-title">THE AGENT DESK</span><span class="ch-num">01</span></div>
 
     <p class="rule-line">Stamp arms Clip's hands. Halt stops everything.</p>
 
@@ -42,7 +41,7 @@
     </section>
 
     <section class="log-wrap">
-      <div class="log-head"><span>DESK LOG</span><button id="clear-log" class="log-clear" type="button">clear</button></div>
+      <div class="log-head"><span class="ch-title"><span class="ch-num">02</span> RUN LOG</span><button id="clear-log" class="log-clear" type="button">clear</button></div>
       <div id="log" class="log" aria-live="polite"></div>
     </section>
 
@@ -54,5 +53,6 @@
 
   <script src="loop.js"></script>
   <script src="sidepanel.js"></script>
+  <script src="sidepanel-mark.js"></script>
 </body>
 </html>
