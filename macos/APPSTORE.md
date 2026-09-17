@@ -6,8 +6,30 @@ ad-hoc signed). This runbook covers the real App Store submission.
 ## Prerequisites — already satisfied
 
 - **Apple Developer Program: paid and active** (confirmed 2026-09-16). Do NOT re-enroll.
-- **Xcode: installing.** Not needed for the dev build; required for archiving/upload.
+- **Xcode: NOT required.** Decision 2026-09-16: no Xcode on this machine (too heavy).
+  The full submission chain works with Command Line Tools only — see
+  "No-Xcode submission chain" below. If Xcode ever lands, the classic
+  Product → Archive flow works too, but it is not needed.
 - Bundle id chosen: `com.friskydev.paperclip`. Version `0.3.0` (matches the Chrome extension).
+
+## No-Xcode submission chain (CLT only — the canonical path here)
+
+Everything below uses tools already on this Mac (swiftc, codesign, productbuild)
+plus the free **Transporter** app (~100 MB, Mac App Store — the only download):
+
+1. Build: `macos/build-app.sh` (already produces the signed bundle; re-sign with the
+   real certs at submission time).
+2. Sign the app with **Apple Distribution** + the Mac App Store provisioning profile:
+   `codesign --deep --force --options runtime --entitlements macos/entitlements.plist \
+     --sign "Apple Distribution: Frisky Developments LLC (<TEAM_ID>)" \
+     --timestamp "dist/FR!sky Paperclip.app"` and embed the profile at
+   `Contents/embedded.provisionprofile`.
+3. Package: `productbuild --component "dist/FR!sky Paperclip.app" /Applications \
+     --sign "3rd Party Mac Developer Installer: Frisky Developments LLC (<TEAM_ID>)" \
+     frisky-paperclip-0.3.0.pkg` (the installer cert is created in the same portal
+   Certificates page as the Apple Distribution cert).
+4. Upload: Transporter app → drop the `.pkg` → Deliver. (Or the App Store Connect
+   API for metadata; binaries still go through Transporter.)
 
 ## Sandbox note — why only two entitlements
 
@@ -35,12 +57,10 @@ Nothing else is needed, and anything else would invite review questions:
 3. **App Store Connect app record** — appstoreconnect.apple.com → Apps → New App →
    macOS, bundle id `com.friskydev.paperclip`, name "FR!sky Paperclip Desk".
 4. **Provisioning profile** — portal → Profiles → "Mac App Store" profile for the App ID.
-5. **Archive with Xcode** — once Xcode finishes installing, wrap `macos/Sources` in a
-   minimal Xcode project (or move the swiftc build into an Xcode target), set signing
-   to the Apple Distribution certificate + the profile from step 4, Product → Archive.
-   Keep `macos/build-app.sh` for dev builds.
-6. **Upload** — Xcode Organizer → Distribute App → App Store Connect, or Transporter
-   with the exported `.pkg`.
+5. **Sign + package (no Xcode)** — follow the "No-Xcode submission chain" above:
+   re-sign with the Apple Distribution certificate + the profile from step 4, then
+   `productbuild` the `.pkg` with the installer certificate.
+6. **Upload** — Transporter app (free, Mac App Store) → drop the `.pkg` → Deliver.
 7. **Listing metadata** — copy from `store/appstore-listing.md` (name, subtitle,
    description, keywords, category, URLs).
 8. **Age rating** — 4+ (no objectionable content of any kind).
