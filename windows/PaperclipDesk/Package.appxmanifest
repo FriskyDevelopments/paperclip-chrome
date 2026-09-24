@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespace="uap mp uap3 rescap">
+
+  <Identity
+    Name="FriskyDevelopments.FRskyPaperclipDesk"
+    Publisher="CN=Frisky Developments LLC"
+    Version="0.4.0.0" />
+
+  <!--
+    STORE ASSOCIATION REQUIRED (owner action, paperclip-win):
+    After the Partner Center app record exists, right-click the project →
+    "Package and Publish" → "Associate App with the Store…". Visual Studio
+    rewrites Publisher (real Store ID) and generates Package.StoreAssociation.xml.
+    The CN= value above is a placeholder ONLY — unsigned local builds sideload,
+    Store uploads MUST carry the associated identity.
+  -->
+  <Properties>
+    <DisplayName>FR!sky Paperclip Desk</DisplayName>
+    <PublisherDisplayName>Frisky Developments LLC</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+
+  <Applications>
+    <Application Id="App" Executable="PaperclipDesk.exe" EntryPoint="PaperclipDesk.App">
+      <uap:VisualElements
+        DisplayName="FR!sky Paperclip Desk"
+        Description="The agent desk: stamp-gated clicks, halt anytime."
+        BackgroundColor="#030708"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <!-- internetClient ONLY: the desk page calls the user's chosen mind
+         endpoint (xAI / OpenAI) on explicit RUN + Google Fonts. No other
+         capability. No telemetry, no accounts, no Frisky servers. -->
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

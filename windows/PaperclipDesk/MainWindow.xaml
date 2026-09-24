@@ -1,0 +1,71 @@
+<!--
+  FR!sky Paperclip — the agent desk (Windows shell).
+  Doctrine-dark top bar over a WebView2 hosting the bundled desk UI.
+  Mirrors macos/Sources/DeskViews.swift semantics: STAMP (red) arms hands,
+  HALT (ink outline) aborts — both bridge into the page via the
+  `frisky-native` CustomEvent. Ctrl+Shift+P focuses the desk when the
+  window is active (system-wide hotkey is an acknowledged v1 gap — see
+  windows/README.md).
+-->
+<Window
+    x:Class="PaperclipDesk.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="FR!sky Paperclip">
+
+    <Grid Background="#030708" RowDefinitions="Auto,*">
+        <!-- Native top bar -->
+        <Border Grid.Row="0" Background="#0A0F11" BorderBrush="#1B262B" BorderThickness="0,0,0,1">
+            <Grid ColumnDefinitions="Auto,Auto,*,Auto,Auto" Margin="14,10">
+                <TextBlock Grid.Column="0"
+                           Text="FR!SKY PAPERCLIP"
+                           FontFamily="Segoe UI Variable Display"
+                           FontWeight="Black"
+                           FontSize="20"
+                           Foreground="#F1EEE7"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1"
+                           Text="THE AGENT DESK"
+                           FontFamily="Consolas"
+                           FontWeight="Bold"
+                           FontSize="11"
+                           Foreground="#8FA3A8"
+                           Margin="12,0,0,0"
+                           VerticalAlignment="Center"/>
+                <Button x:Name="StampButton"
+                        Grid.Column="3"
+                        Content="STAMP"
+                        Click="OnStamp"
+                        Margin="0,0,8,0"
+                        Padding="18,8"
+                        FontWeight="Bold"
+                        Foreground="#FFFFFF"
+                        Background="#FF334E"
+                        BorderThickness="0"
+                        CornerRadius="4">
+                    <Button.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control,Shift" Key="S"/>
+                    </Button.KeyboardAccelerators>
+                </Button>
+                <Button x:Name="HaltButton"
+                        Grid.Column="4"
+                        Content="HALT"
+                        Click="OnHalt"
+                        Padding="18,8"
+                        FontWeight="Bold"
+                        Foreground="#F1EEE7"
+                        Background="Transparent"
+                        BorderBrush="#F1EEE7"
+                        BorderThickness="1"
+                        CornerRadius="4">
+                    <Button.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control,Shift" Key="H"/>
+                    </Button.KeyboardAccelerators>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Bundled desk UI -->
+        <WebView2 x:Name="DeskView" Grid.Row="1"/>
+    </Grid>
+</Window>
