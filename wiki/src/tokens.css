@@ -1,0 +1,21 @@
+@import "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap";
+
+:root {
+  --void: #030708;
+  --panel: #0b1214;
+  --panel-2: #0e1a1c;
+  --cream: #f4efe2;
+  --cream-ink: #10181a;
+  --text: #f4fbf8;
+  --muted: #8fa2a3;
+  --faint: #536769;
+  --hairline: #9cebdc26;
+  --red: #ff334e;
+  --coral: #ff6b7a;
+  --gold: #f1b75c;
+  --mint: #22c7a8;
+  --pop: #b8ff3c;
+  --font-display: "Barlow Condensed", "Arial Narrow", ui-sans-serif, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}

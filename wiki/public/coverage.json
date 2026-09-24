@@ -1,0 +1,23 @@
+{
+  "release": "W01",
+  "generatedAt": "2026-09-24T19:29:32.430Z",
+  "guideCount": 10,
+  "guideIds": [
+    "start-here",
+    "doctrine",
+    "minds",
+    "stamp-halt",
+    "seats-keys",
+    "sidecar",
+    "mac-app",
+    "windows-app",
+    "safari",
+    "privacy"
+  ],
+  "groups": [
+    "DESK",
+    "SAFETY",
+    "ACCESS",
+    "PLATFORMS"
+  ]
+}
