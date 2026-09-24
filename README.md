@@ -16,7 +16,7 @@ Options: paste an xAI key. It stays on the machine. Run loop.
 
 ## SKU
 $29 → $19 on Whop. The $49 kit already includes this room.
-https://clip.friskydev.com/chrome
+https://friskydevelopments.github.io/paperclip-chrome/
 
 ## Mac app
 `macos/` — native menu-bar desk (⌥⌘P, floating panel, bundled web desk).

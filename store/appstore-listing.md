@@ -46,7 +46,7 @@ YOUR KEY, YOUR MACHINE
 
 PRICING
 $19 launch / $29 on Whop. Already included in the $49 FR!sky kit.
-https://clip.friskydev.com/chrome
+https://friskydevelopments.github.io/paperclip-chrome/
 
 ## Copyright
 2026 Frisky Developments LLC

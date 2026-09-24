@@ -44,4 +44,4 @@ OPTIONAL CLIP SIDECAR
 
 PRICING
 $19 launch / $29 on Whop. Already included in the $49 FR!sky kit.
-https://clip.friskydev.com/chrome
+https://friskydevelopments.github.io/paperclip-chrome/
