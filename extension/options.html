@@ -19,20 +19,32 @@
     <p class="opt-sub">You pick the mind. Keys stay on this machine — nothing here talks to Frisky servers.</p>
 
     <div class="field">
-      <label for="mind">Mind</label>
-      <select id="mind">
-        <option value="xai">Grok (xAI)</option>
-        <option value="openai">GPT (OpenAI)</option>
-      </select>
+      <span class="field-label" id="mind-label">Mind</span>
+      <div class="mind-grid" role="radiogroup" aria-labelledby="mind-label">
+        <label class="mind-card" data-mind="xai">
+          <input type="radio" name="mind" value="xai" checked />
+          <span class="mind-name">GROK</span>
+          <span class="mind-model">grok-4-fast</span>
+          <span class="mind-endpoint">api.x.ai</span>
+          <span class="mind-stamp" aria-hidden="true">STAMPED</span>
+        </label>
+        <label class="mind-card" data-mind="openai">
+          <input type="radio" name="mind" value="openai" />
+          <span class="mind-name">GPT</span>
+          <span class="mind-model">gpt-4o-mini</span>
+          <span class="mind-endpoint">api.openai.com</span>
+          <span class="mind-stamp" aria-hidden="true">STAMPED</span>
+        </label>
+      </div>
     </div>
 
-    <div class="field">
+    <div class="field" id="xai-block">
       <label for="xai-key">xAI API key</label>
       <input id="xai-key" type="password" placeholder="xai-…" autocomplete="off" spellcheck="false" />
       <div class="hint">Get a key at <a href="https://x.ai" target="_blank" rel="noreferrer">x.ai</a> → console. Used only to call api.x.ai when you press RUN.</div>
     </div>
 
-    <div class="field">
+    <div class="field" id="openai-block" hidden>
       <label for="openai-key">OpenAI API key</label>
       <input id="openai-key" type="password" placeholder="sk-…" autocomplete="off" spellcheck="false" />
       <div class="hint">Get a key at <a href="https://platform.openai.com" target="_blank" rel="noreferrer">platform.openai.com</a> → API keys. Used only to call api.openai.com when you press RUN.</div>
