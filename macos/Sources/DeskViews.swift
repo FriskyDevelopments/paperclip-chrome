@@ -54,29 +54,4 @@ struct DeskRootView: View {
     }
 }
 
-struct AboutView: View {
-    let version: String
 
-    var body: some View {
-        VStack(spacing: 10) {
-            Text("FR!SKY PAPERCLIP")
-                .font(.system(.title2, design: .default).weight(.heavy))
-                .foregroundStyle(Color.paperclipInk)
-            Text("THE AGENT DESK")
-                .font(.system(.caption, design: .monospaced).weight(.bold))
-                .foregroundStyle(Color.paperclipRed)
-            Text("Version \(version)")
-                .font(.system(.body, design: .monospaced))
-                .foregroundStyle(Color.paperclipInk.opacity(0.7))
-            Text("Grok plans. You stamp. Clip clicks.")
-                .font(.system(.callout, design: .default))
-                .foregroundStyle(Color.paperclipInk)
-            Text("© 2026 Frisky Developments LLC")
-                .font(.caption)
-                .foregroundStyle(Color.paperclipInk.opacity(0.5))
-        }
-        .padding(24)
-        .frame(width: 340, height: 220)
-        .background(Color.paperclipCream)
-    }
-}

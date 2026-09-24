@@ -3,17 +3,10 @@ import Carbon
 import SwiftUI
 import WebKit
 
-final class NativeBridge: NSObject, WKScriptMessageHandler {
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        NSLog("paperclip native message: %@", String(describing: message.body))
-    }
-}
-
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private var panel: NSPanel!
     private var webView: WKWebView!
-    private var aboutWindow: NSWindow?
     private var hotKey: GlobalHotKey?
     private var resignObserver: NSObjectProtocol?
 
@@ -43,7 +36,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             forMainFrameOnly: false
         )
         userContent.addUserScript(inject)
-        userContent.add(NativeBridge(), name: "native")
         config.userContentController = userContent
 
         webView = WKWebView(frame: .zero, configuration: config)
@@ -101,7 +93,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(show)
         menu.addItem(NSMenuItem(title: "Open clip.friskydev.com", action: #selector(menuOpenSite), keyEquivalent: ""))
         menu.addItem(.separator())
-        menu.addItem(NSMenuItem(title: "About FR!sky Paperclip", action: #selector(menuAbout), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(menuQuit), keyEquivalent: "q"))
         menu.items.forEach { $0.target = self }
         statusItem.menu = menu
@@ -113,24 +104,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if let url = URL(string: "https://clip.friskydev.com") {
             NSWorkspace.shared.open(url)
         }
-    }
-
-    @objc private func menuAbout() {
-        if aboutWindow == nil {
-            let window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 340, height: 220),
-                styleMask: [.titled, .closable],
-                backing: .buffered,
-                defer: false
-            )
-            window.title = "About FR!sky Paperclip"
-            window.contentView = NSHostingView(rootView: AboutView(version: appVersion))
-            window.isReleasedWhenClosed = false
-            window.center()
-            aboutWindow = window
-        }
-        aboutWindow?.makeKeyAndOrderFront(nil)
-        NSApp.activate(ignoringOtherApps: true)
     }
 
     @objc private func menuQuit() { NSApp.terminate(nil) }
