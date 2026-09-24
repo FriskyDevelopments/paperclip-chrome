@@ -27,5 +27,6 @@ Submission runbook: `macos/APPSTORE.md`; listing copy: `store/appstore-listing.m
 ## Store
 Dev: Chrome → Extensions → Developer mode → Load unpacked → `extension/`.
 Chrome Web Store: link coming after review.
+Safari: port staged in `safari/` (toolbar-popup build, 0.4.0) — container host app pending, runbook in `store/safari-submission.md`.
 Privacy policy: https://friskydevelopments.github.io/paperclip-chrome/privacy.html
 Store zip: `scripts/build-store-zip.sh` → `dist/frisky-paperclip-<version>.zip`.
