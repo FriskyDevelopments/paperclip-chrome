@@ -17,9 +17,6 @@ Adds a single "Open Paperclip desk" context-menu entry so the panel can be opene
 ### storage
 chrome.storage.local holds the user's xAI API key and the sidecar endpoint. Both stay on the machine; nothing is synced or transmitted to Frisky.
 
-### clipboardWrite
-Reserved for the desk's copy affordances (copying log output / results to the clipboard at the user's request). No clipboard content is read.
-
 ### nativeMessaging
 Fallback channel to the optional Clip sidecar: if the local HTTP endpoint is unreachable, the desk asks the native host com.friskydev.paperclip for a page snapshot. Runs only when the user runs the loop.
 
