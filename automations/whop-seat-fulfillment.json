@@ -1,0 +1,166 @@
+{
+  "name": "whop-seat-fulfillment",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whop-payment",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "whop-webhook",
+      "name": "Whop payment webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "whop-payment"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "ok",
+        "options": {}
+      },
+      "id": "ack",
+      "name": "ACK immediately",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "paid-check",
+              "leftValue": "={{ $json.event === \"payment.succeeded\" || $json.data?.status === \"paid\" || $json.status === \"paid\" }}",
+              "rightValue": "={{ true }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-paid",
+      "name": "IF payment.succeeded",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generate a seat key: FRSKY-PC-XXXX-XXXX\n// Uppercase alnum, no ambiguous chars (0/O/1/I excluded).\nconst ALPHABET = \"ABCDEFGHJKLMNPQRSTUVWXYZ23456789\";\nconst crypto = require(\"crypto\");\nfunction group(n) {\n  const bytes = crypto.randomBytes(n);\n  let s = \"\";\n  for (const b of bytes) s += ALPHABET[b % ALPHABET.length];\n  return s;\n}\nconst prefix = $env.SEAT_PREFIX || \"FRSKY-PC\";\nconst seatKey = `${prefix}-${group(4)}-${group(4)}`;\nconst email = $json.data?.email || $json.data?.user?.email || $json.email || \"\";\nconst name = $json.data?.user?.name || $json.data?.name || \"\";\nreturn [{ json: { seatKey, email, name } }];"
+      },
+      "id": "gen-key",
+      "name": "Generate seat key",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 220]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.RESEND_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"from\": \"{{ $env.RESEND_FROM }}\", \"to\": [\"{{ $json.email }}\"], \"subject\": \"Your FR!sky Paperclip seat key\", \"html\": \"<p>Clip in — your seat is stamped.</p><p style=\\\"font-family:monospace;font-size:20px;letter-spacing:2px;\\\"><b>{{ $json.seatKey }}</b></p><p>How to unlock the GPT mind:<br/>1. Open the extension Options page.<br/>2. Paste the key into the <b>Seat key</b> field.<br/>3. Press SAVE, pick the GPT mind, stamp and run.</p><p>Grok stays free on your own xAI key — no seat needed.</p><p style=\\\"color:#888;font-size:12px;\\\">Your Whop receipt is your proof of purchase. Lost this key? Reply to this email.</p>\" }",
+        "options": {}
+      },
+      "id": "send-resend",
+      "name": "Resend seat email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 220],
+      "credentials": {}
+    },
+    {
+      "parameters": {},
+      "id": "done",
+      "name": "Done (log)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1340, 220]
+    }
+  ],
+  "connections": {
+    "Whop payment webhook": {
+      "main": [
+        [
+          {
+            "node": "ACK immediately",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF payment.succeeded",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF payment.succeeded": {
+      "main": [
+        [
+          {
+            "node": "Generate seat key",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Generate seat key": {
+      "main": [
+        [
+          {
+            "node": "Resend seat email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resend seat email": {
+      "main": [
+        [
+          {
+            "node": "Done (log)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
