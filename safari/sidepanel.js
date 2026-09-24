@@ -21,6 +21,7 @@ const SYSTEM_PROMPT = [
 ].join("\n");
 
 const UNTRUSTED_PREFIX = "[UNTRUSTED PAGE CONTENT]\n";
+const SEAT_RE = /^FRSKY-PC-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
 const MAX_TAB_CHARS = 12000;
 
 const els = {
@@ -88,11 +89,12 @@ function setRunning(on) {
 }
 
 async function getSettings() {
-  const got = await chrome.storage.local.get(["xaiKey", "openaiKey", "mind", "sidecarEndpoint"]);
+  const got = await chrome.storage.local.get(["xaiKey", "openaiKey", "seatKey", "mind", "sidecarEndpoint"]);
   const mind = got.mind === "openai" ? "openai" : "xai";
   return {
     key: (mind === "openai" ? got.openaiKey : got.xaiKey) || "",
     mind,
+    seatKey: got.seatKey || "",
     sidecar: (got.sidecarEndpoint || "http://127.0.0.1:7429").replace(/\/+$/, ""),
   };
 }
@@ -242,10 +244,15 @@ async function onRun() {
     const brain = window.PaperclipLoop.minds[mind] || window.PaperclipLoop.minds.xai;
     try { await chrome.permissions.request({ origins: ["http://127.0.0.1:7429/*", `${new URL(brain.endpoint).origin}/*`] }); } catch (_) { /* optional */ }
   }
-  const { key, mind } = await getSettings();
+  const { key, mind, seatKey } = await getSettings();
   if (!key) {
     els.nokey.hidden = false;
     appendLog(`No ${window.PaperclipLoop.minds[mind].label} key. Pick your mind and add a key in Options.`, "err");
+    return;
+  }
+  if (mind === "openai" && !SEAT_RE.test(seatKey)) {
+    els.nokey.hidden = false;
+    appendLog("GPT needs a seat key — paste your FRSKY-PC key in Options.", "err");
     return;
   }
   state.halted = false;
@@ -321,7 +328,7 @@ function init() {
   setStatus("idle");
   refreshKeyHint();
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === "local" && (changes.xaiKey || changes.openaiKey || changes.mind)) refreshKeyHint();
+    if (area === "local" && (changes.xaiKey || changes.openaiKey || changes.seatKey || changes.mind)) refreshKeyHint();
   });
   appendLog("Desk ready. Paste a task, STAMP to arm hands, RUN to plan.", "info");
 }
