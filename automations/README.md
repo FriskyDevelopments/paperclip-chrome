@@ -17,6 +17,40 @@ Options — that's the whole pipeline. No accounts, no license server.
    `Bearer $env.RESEND_API_KEY`; sender is `$env.RESEND_FROM`.
 5. **Done (log)** — terminal NoOp so the run is greppable.
 
+
+## Make.com mirror (`make-seat-fulfillment.json`)
+
+Same pipeline, native Make scenario (validated `valid:true` via the Make MCP):
+
+1. **Custom Webhook** (`whop-seat-fulfillment`) — Whop POSTs the payment event.
+2. **Webhook Response** — `200 ok` immediately so Whop never times out.
+3. **HTTP → Resend** — `POST https://api.resend.com/emails` with the seat key
+   generated inline in the payload mapping (`FRSKY-PC-XXXX-XXXX`, uppercase
+   hex-style segments derived per-execution — note: Make expressions can't do
+   crypto-random without a helper, so uniqueness rests on the webhook payload
+   hash + timestamp; see the n8n honest-random note below).
+
+Auth header: `Authorization: Bearer {{process.env.RESEND_API_KEY}}` — wire this
+to a Make **environment variable** (Scenarios > Variables) or a Token-type
+connection, never hardcode the key. `RESEND_FROM` = `seats@friskydev.com`
+(lives in the body mapping; change it there if the sender changes).
+
+### Deploy
+- Option A (API): `MAKE_API_KEY` in env, then deploy the validated blueprint
+  from `automations/make-seat-fulfillment.json` via the Make MCP
+  `create_scenario` (needs a team + folder target from your Make org).
+- Option B (UI): Scenarios → Import blueprint → paste the JSON → set the two
+  variables → activate → copy the webhook URL into Whop dashboard webhooks.
+
+### Honest deltas vs the n8n flow
+- No `IF paid` gate in the blueprint: Router **filters can't be set via the
+  Make API** — add the paid-only filter on the Resend route in the Make UI
+  after import (condition on the webhook payload's status field).
+- Seat randomness is weaker than n8n's crypto node (expression-hash based).
+  For paid seats that matter, prefer the n8n flow, or add a Make **Tools >
+  Basic trigger / custom JS** step later. Keys stay format-valid either way,
+  which is all the extension checks client-side today.
+
 ## Setup
 
 1. **Resend first.** Verify `friskydev.com` in Resend (SPF/DKIM), create an API

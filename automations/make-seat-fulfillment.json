@@ -1,0 +1,81 @@
+{
+  "flow": [
+    {
+      "id": 1,
+      "mapper": {
+        "name": "whop-seat-fulfillment"
+      },
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "module": "gateway:CustomWebHook",
+      "parameters": {
+        "name": "whop-seat-fulfillment"
+      }
+    },
+    {
+      "id": 2,
+      "mapper": {
+        "body": "ok",
+        "status": "200"
+      },
+      "metadata": {
+        "designer": {
+          "x": 250,
+          "y": 0
+        }
+      },
+      "module": "gateway:WebhookRespond",
+      "parameters": {
+        "body": "ok",
+        "status": "200"
+      }
+    },
+    {
+      "id": 3,
+      "mapper": {
+        "body": "{\"from\": \"FR!sky Paperclip <seats@friskydev.com>\", \"to\": [\"{{1.email}}\"], \"subject\": \"Your FR!sky Paperclip seat key\", \"html\": \"<p>Hi {{1.name}},</p><p>Your FR!sky Paperclip seat is ready.</p><p style=\\\"font-family:monospace;font-size:18px\\\"><b>FRSKY-PC-{{upper(substr(sha256(string(coalesce(1.email;1.id;now)));1;4))}}-{{upper(substr(sha256(string(coalesce(1.id;1.email;now))+string(now));1;4))}}</b></p><p>Paste it in the extension: side panel \\u2192 Options \\u2192 Seat key \\u2192 SAVE.<br>Grok runs free on your own xAI key; the seat unlocks the GPT mind. Your keys never leave your machine.</p><p>Receipt lives in Whop. Lost keys: reply to this email.</p><p>\\u2014 Frisky Developments</p>\"}",
+        "bodyType": "Raw",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{process.env.RESEND_API_KEY}}"
+          }
+        ],
+        "method": "POST",
+        "url": "https://api.resend.com/emails"
+      },
+      "metadata": {
+        "designer": {
+          "x": 500,
+          "y": 0
+        }
+      },
+      "module": "http:ActionSendData",
+      "parameters": {
+        "body": "{\"from\": \"FR!sky Paperclip <seats@friskydev.com>\", \"to\": [\"{{1.email}}\"], \"subject\": \"Your FR!sky Paperclip seat key\", \"html\": \"<p>Hi {{1.name}},</p><p>Your FR!sky Paperclip seat is ready.</p><p style=\\\"font-family:monospace;font-size:18px\\\"><b>FRSKY-PC-{{upper(substr(sha256(string(coalesce(1.email;1.id;now)));1;4))}}-{{upper(substr(sha256(string(coalesce(1.id;1.email;now))+string(now));1;4))}}</b></p><p>Paste it in the extension: side panel \\u2192 Options \\u2192 Seat key \\u2192 SAVE.<br>Grok runs free on your own xAI key; the seat unlocks the GPT mind. Your keys never leave your machine.</p><p>Receipt lives in Whop. Lost keys: reply to this email.</p><p>\\u2014 Frisky Developments</p>\"}",
+        "bodyType": "Raw",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{process.env.RESEND_API_KEY}}"
+          }
+        ],
+        "method": "POST",
+        "url": "https://api.resend.com/emails"
+      }
+    }
+  ],
+  "name": "FR!sky Paperclip \u2014 Whop seat fulfillment"
+}
