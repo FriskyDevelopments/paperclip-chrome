@@ -31,13 +31,17 @@ The planning loop calls the xAI chat completions API with the user's own key whe
 ### https://api.openai.com/*
 The planning loop calls the OpenAI chat completions API with the user's own key when GPT is the chosen mind. Page content and the task are sent here — and only here — when the user presses RUN. Requested at runtime with the user's consent.
 
+### https://api.apify.com/*
+The scrape tool calls the Apify Website Content Crawler (`apify~website-content-crawler`, run-sync endpoint) with the user's own token. Only the crawled page's URL and markdown come back — and only when the model explicitly calls scrape during a run. Requested at runtime with the user's consent.
+
 ## Required disclosures
 
 ### Remote code
-None. FR!sky Paperclip ships no remotely hosted code. All JavaScript is bundled in the extension package and executes locally. The only remote calls are data calls to the chosen mind's API (xAI or OpenAI) and the user's localhost sidecar.
+None. FR!sky Paperclip ships no remotely hosted code. All JavaScript is bundled in the extension package and executes locally. The only remote calls are data calls to the chosen mind's API (xAI or OpenAI), the Apify crawl API when the model calls scrape, and the user's localhost sidecar.
 
 ### Data usage
 - Each API key is stored locally (chrome.storage.local) and sent only to its own endpoint.
 - Page content (visible text or sidecar snapshot) is sent only to the chosen mind's API, only when the user explicitly runs the loop. It is prefixed as untrusted data in the prompt.
+- Crawled page markdown from Apify is prefixed as untrusted data and sent only to the chosen mind's API, only when the model calls scrape.
 - Nothing is sent to Frisky Developments servers. No accounts, no analytics, no telemetry, no data sale or sharing.
 - The extension does not collect browsing history; it touches only the active tab, only during a user-initiated run.

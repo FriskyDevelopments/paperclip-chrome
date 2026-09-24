@@ -23,6 +23,7 @@ Not Claude-in-Chrome. Not a grok.com bookmark.
 HOW IT WORKS
 • Pick your mind — Grok or GPT — type a task. It plans and acts in up to 12 steps.
 • Clip can read the active tab and snapshot the page for free.
+• The scrape tool fetches any URL through Apify and returns clean markdown — JS walls, PDFs, no problem.
 • HANDS actions — navigate, click, type — only run while you've pressed STAMP.
 • Press HALT and everything stops, instantly. Halt also disarms the hands.
 • Page content is treated as untrusted data, never as instructions.

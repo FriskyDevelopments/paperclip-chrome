@@ -4,6 +4,7 @@
 const els = {
   mindInputs: Array.from(document.querySelectorAll('input[name="mind"]')),
   key: { xai: document.getElementById("xai-key"), openai: document.getElementById("openai-key") },
+  apify: document.getElementById("apify-token"),
   blocks: { xai: document.getElementById("xai-block"), openai: document.getElementById("openai-block") },
   seat: document.getElementById("seat-key"),
   keyFlag: document.getElementById("key-flag"),
@@ -40,7 +41,7 @@ function showMindBlock(mind) {
 
 
 async function load() {
-  const got = await chrome.storage.local.get(["xaiKey", "openaiKey", "seatKey", "mind", "sidecarEndpoint"]);
+  const got = await chrome.storage.local.get(["xaiKey", "openaiKey", "seatKey", "mind", "sidecarEndpoint", "apifyToken"]);
   const mind = got.mind === "openai" ? "openai" : "xai";
   const radio = document.querySelector(`input[name="mind"][value="${mind}"]`);
   if (radio) radio.checked = true;
@@ -59,10 +60,11 @@ async function onSave() {
   const openaiKey = els.key.openai.value.trim();
   const seatKey = els.seat.value.trim();
   const sidecar = els.sidecar.value.trim() || "http://127.0.0.1:7429";
-  await chrome.storage.local.set({ xaiKey, openaiKey, seatKey, mind, sidecarEndpoint: sidecar });
+  const apifyToken = els.apify.value.trim();
+  await chrome.storage.local.set({ xaiKey, openaiKey, seatKey, mind, sidecarEndpoint: sidecar, apifyToken });
   els.keyFlag.hidden = !((mind === "openai" ? openaiKey : xaiKey));
   try {
-    await chrome.permissions.request({ origins: ["http://127.0.0.1:7429/*", "https://api.x.ai/*", "https://api.openai.com/*"] });
+    await chrome.permissions.request({ origins: ["http://127.0.0.1:7429/*", "https://api.x.ai/*", "https://api.openai.com/*", "https://api.apify.com/*"] });
   } catch (_) { /* optional grants can be refused; the panel still works without */ }
   els.status.textContent = "Saved.";
   setTimeout(() => { els.status.textContent = ""; }, 2500);

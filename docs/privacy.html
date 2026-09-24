@@ -106,10 +106,13 @@
     <h2>02 — Page content</h2>
     <p>When you run the loop, the extension may read the visible text of your active tab (or request a snapshot from your local Clip sidecar) and include it in the prompt sent to your mind's API. This happens only on an explicit run that you start. Page content is treated as untrusted data inside the prompt and is never sent anywhere else.</p>
 
-    <h2>03 — Local sidecar</h2>
+    <h2>03 — Apify scrape token</h2>
+    <p>The optional <code>scrape</code> tool needs your own Apify API token. It lives in <code>chrome.storage.local</code> and is sent only to <code>api.apify.com</code> to run the Website Content Crawler, and only when the model calls scrape during a run. Crawled pages are treated as untrusted data.</p>
+
+    <h2>04 — Local sidecar</h2>
     <p>If you run the optional Clip sidecar, the extension talks to it on <code>http://127.0.0.1:7429</code> or via the native messaging host <code>com.friskydev.paperclip</code>. That traffic never leaves your machine.</p>
 
-    <h2>04 — What we don't do</h2>
+    <h2>05 — What we don't do</h2>
     <ul>
       <li>No accounts, no sign-in.</li>
       <li>No analytics, no telemetry, no crash reporting.</li>
@@ -118,13 +121,13 @@
       <li>No data sale, no data sharing, no advertising.</li>
     </ul>
 
-    <h2>05 — Data retention</h2>
+    <h2>06 — Data retention</h2>
     <p>We hold nothing. All state (your key, the sidecar endpoint, the on-screen log) lives in your browser and disappears when you clear it or uninstall the extension.</p>
 
-    <h2>06 — Changes</h2>
+    <h2>07 — Changes</h2>
     <p>If this policy changes, the change ships with a new extension version and is visible in the source repository.</p>
 
-    <h2>07 — Contact</h2>
+    <h2>08 — Contact</h2>
     <p>Questions: <a href="mailto:founder@friskydev.com">founder@friskydev.com</a></p>
 
     <div class="foot">FR!sky Paperclip · <a href="https://clip.friskydev.com">clip.friskydev.com</a></div>

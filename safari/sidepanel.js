@@ -8,6 +8,7 @@ const SYSTEM_PROMPT = [
   "Tools:",
   "- read_tab: read the visible text of the active tab. Cheap, always allowed.",
   "- snapshot: ask the Clip sidecar for a fuller page snapshot. Always allowed.",
+"- scrape: fetch any external URL through the Apify crawler and return clean markdown. Free, never needs a stamp — use it for JS-heavy pages, PDFs, or anything read_tab cannot reach.",
   "- goto / click / type_text: HANDS. They physically change the page, so they only",
   "  run while the human has armed you with the STAMP button. If a HANDS call comes",
   "  back 'Unstamped', stop trying HANDS and tell the human what you wanted to do.",
@@ -89,12 +90,13 @@ function setRunning(on) {
 }
 
 async function getSettings() {
-  const got = await chrome.storage.local.get(["xaiKey", "openaiKey", "seatKey", "mind", "sidecarEndpoint"]);
+  const got = await chrome.storage.local.get(["xaiKey", "openaiKey", "seatKey", "mind", "sidecarEndpoint", "apifyToken"]);
   const mind = got.mind === "openai" ? "openai" : "xai";
   return {
     key: (mind === "openai" ? got.openaiKey : got.xaiKey) || "",
     mind,
     seatKey: got.seatKey || "",
+    apifyToken: got.apifyToken || "",
     sidecar: (got.sidecarEndpoint || "http://127.0.0.1:7429").replace(/\/+$/, ""),
   };
 }
@@ -113,6 +115,36 @@ async function execReadTab() {
   });
   const text = String(result || "").slice(0, MAX_TAB_CHARS);
   return UNTRUSTED_PREFIX + text;
+}
+
+async function execScrape(args) {
+  const url = String(args.url || "");
+  if (!/^https?:\/\//i.test(url)) return `ERROR: scrape needs a full http(s) URL, got "${url}".`;
+  const pages = Math.min(5, Math.max(1, parseInt(args.maxPages, 10) || 1));
+  const { apifyToken } = await getSettings();
+  if (!apifyToken) return "ERROR: no Apify token. Paste one in Options to unlock scrape.";
+  let runRes;
+  try {
+    runRes = await fetch(`https://api.apify.com/v2/acts/apify~website-content-crawler/run-sync-get-dataset-items?token=${encodeURIComponent(apifyToken)}`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ startUrls: [{ url }], maxCrawlPages: pages, crawlerType: "cheerio", maxCrawlDepth: 0, saveMarkdown: true }),
+    });
+  } catch (err) {
+    return `ERROR: Apify unreachable (${err && err.message ? err.message : err}).`;
+  }
+  if (!runRes.ok) {
+    if (runRes.status === 401) return "ERROR: Apify token rejected (401). Check the token in Options.";
+    return `ERROR: Apify ${runRes.status}.`;
+  }
+  let items;
+  try { items = await runRes.json(); } catch (_) { return "ERROR: Apify returned unreadable data."; }
+  if (!Array.isArray(items) || !items.length) return "ERROR: Apify returned no pages for that URL.";
+  const parts = items.slice(0, pages).map((it) => {
+    const md = it.markdown || it.text || "";
+    return `--- ${it.url || url} ---\n${String(md).slice(0, MAX_TAB_CHARS)}`;
+  });
+  return UNTRUSTED_PREFIX + parts.join("\n").slice(0, MAX_TAB_CHARS * 2);
 }
 
 async function execSnapshot() {
@@ -209,6 +241,7 @@ async function exec(name, args) {
   try {
     let out;
     if (name === "read_tab") out = await execReadTab();
+    else if (name === "scrape") out = await execScrape(args);
     else if (name === "snapshot") out = await execSnapshot();
     else if (name === "goto") out = await execGoto(args);
     else if (name === "click") {

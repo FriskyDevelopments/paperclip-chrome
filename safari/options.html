@@ -61,6 +61,13 @@
       <div id="key-flag" class="saved-flag" hidden>key saved ✓</div>
     </div>
 
+
+    <div class="field" id="apify-block">
+      <label for="apify-token">Apify token</label>
+      <input id="apify-token" type="password" placeholder="apify_api_…" autocomplete="off" spellcheck="false" />
+      <div class="hint">Powers the <b>scrape</b> tool (Website Content Crawler). Get one at <a href="https://console.apify.com" target="_blank" rel="noreferrer">console.apify.com</a> → Settings → Integrations. Sent only to api.apify.com, only when the model calls scrape.</div>
+    </div>
+
     <div class="field">
       <label for="sidecar">Clip sidecar endpoint</label>
       <input id="sidecar" type="text" placeholder="http://127.0.0.1:7429" autocomplete="off" spellcheck="false" />
@@ -72,7 +79,7 @@
       <span id="status" class="status-line" role="status"></span>
     </div>
 
-    <div class="opt-note" id="key-note">Your keys never leave this machine. They live in chrome.storage.local and only the selected mind's endpoint is called, only when you run the loop.</div>
+    <div class="opt-note" id="key-note">Your keys never leave this machine. They live in chrome.storage.local and only the selected mind's endpoint is called, only when you run the loop. The Apify token is sent only to api.apify.com, only when the model calls scrape.</div>
   </main>
   <script src="options.js"></script>
 </body>

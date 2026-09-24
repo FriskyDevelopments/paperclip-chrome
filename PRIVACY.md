@@ -13,6 +13,10 @@ You pick the mind — Grok (xAI) or GPT (OpenAI) — and bring your own API key 
 
 When you run the loop, the extension may read the visible text of your active tab (or request a snapshot from your local Clip sidecar) and include it in the prompt sent to your mind's API. This happens only on an explicit run that you start. Page content is treated as untrusted data inside the prompt. It is never sent anywhere else.
 
+## Apify scrape token
+
+The optional `scrape` tool needs your own Apify API token. It lives in `chrome.storage.local` and is sent only to `api.apify.com` to run the Website Content Crawler, and only when the model calls scrape during a run. Crawled pages are treated as untrusted data.
+
 ## Local sidecar
 
 If you run the optional Clip sidecar, the extension talks to it on `http://127.0.0.1:7429` or via the native messaging host `com.friskydev.paperclip`. That traffic never leaves your machine.
