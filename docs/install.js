@@ -5,7 +5,8 @@
 // ACT 01 button links straight to it. Empty = scroll to sideload instructions.
 const CWS_URL = "";
 
-const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const HEADLESS = typeof navigator !== "undefined" && !!navigator.webdriver;
+const REDUCED = HEADLESS || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- Scroll progress ---------- */
 const progress = document.getElementById("progress");
@@ -92,10 +93,13 @@ function scramble(el) {
   }
   requestAnimationFrame(tick);
 }
-document.querySelectorAll("[data-scramble]").forEach((el, i) => {
+document.querySelectorAll("[data-scramble]").forEach((el) => {
   el.dataset.final = el.textContent;
-  if (REDUCED) return;
-  setTimeout(() => scramble(el), 250 + i * 220);
+  if (REDUCED) {
+    el.setAttribute("aria-label", el.dataset.final);
+    return;
+  }
+  setTimeout(() => scramble(el), 250 + [...el.parentNode.children].indexOf(el) * 220);
 });
 
 /* ---------- Magnetic CTAs ---------- */

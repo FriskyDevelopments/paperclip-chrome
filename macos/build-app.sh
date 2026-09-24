@@ -4,6 +4,9 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
+REPO="$(cd "$ROOT/.." && pwd)"
+MARK="$REPO/extension/icons/mark.svg"
+MARK16="$REPO/extension/icons/mark-16.svg"
 PROD="${PAPERCLIP_PROD:-$HOME/frisky-paperclip-prod}"
 APP_NAME="FR!sky Paperclip"
 DIST="$ROOT/dist"
@@ -19,7 +22,7 @@ step "Inputs"
 echo "  sdk:      $SDK"
 echo "  target:   $TARGET"
 echo "  web src:  $PROD"
-for f in "$PROD/index.html" "$PROD/assets" "$PROD/icons/husky.svg"; do
+for f in "$PROD/index.html" "$PROD/assets" "$MARK" "$MARK16"; do
     [[ -e "$f" ]] || { echo "  MISSING: $f" >&2; exit 1; }
 done
 
@@ -27,11 +30,11 @@ step "Clean dist + build"
 rm -rf "$DIST" "$BUILD"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources" "$BUILD"
 
-step "Render icons from husky.svg"
+step "Render icons from mark.svg"
 ICONSET="$BUILD/AppIcon.iconset"
 mkdir -p "$ICONSET"
 render() { # name size
-    rsvg-convert -w "$2" -h "$2" "$PROD/icons/husky.svg" -o "$ICONSET/$1"
+    rsvg-convert -w "$2" -h "$2" "$MARK" -o "$ICONSET/$1"
     echo "  $1 (${2}px)"
 }
 render icon_16x16.png 16
@@ -48,8 +51,8 @@ iconutil -c icns "$ICONSET" -o "$APP/Contents/Resources/AppIcon.icns"
 echo "  AppIcon.icns written"
 
 step "Render status-bar template image"
-rsvg-convert -w 18 -h 18 "$PROD/icons/husky.svg" -o "$BUILD/StatusIcon.png"
-rsvg-convert -w 36 -h 36 "$PROD/icons/husky.svg" -o "$BUILD/StatusIcon@2x.png"
+rsvg-convert -w 18 -h 18 "$MARK16" -o "$BUILD/StatusIcon.png"
+rsvg-convert -w 36 -h 36 "$MARK" -o "$BUILD/StatusIcon@2x.png"
 cp "$BUILD/StatusIcon.png" "$BUILD/StatusIcon@2x.png" "$APP/Contents/Resources/"
 echo "  StatusIcon.png + StatusIcon@2x.png written"
 
