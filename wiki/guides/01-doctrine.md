@@ -1,5 +1,3 @@
-# DOCTRINE
-
 Three rules. They do not bend, and they do not need your trust to work.
 
 ## 1. STAMP arms the hands

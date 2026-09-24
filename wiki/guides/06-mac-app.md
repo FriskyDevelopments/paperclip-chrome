@@ -1,5 +1,3 @@
-# MAC APP
-
 The desk, native. Menu bar icon, floating panel, hotkey.
 
 ## The shape

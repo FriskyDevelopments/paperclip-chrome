@@ -1,5 +1,3 @@
-# WINDOWS APP
-
 The desk goes native on Windows: WinUI 3, WebView2, Store-bound.
 
 ## The shape

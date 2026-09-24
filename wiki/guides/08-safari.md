@@ -1,5 +1,3 @@
-# SAFARI
-
 Same desk, Apple packaging. Toolbar popup today, container app tomorrow.
 
 ## The shape

@@ -1,5 +1,3 @@
-# SEATS & KEYS
-
 One purchase, one key, one email. No accounts, no license server.
 
 ## The format

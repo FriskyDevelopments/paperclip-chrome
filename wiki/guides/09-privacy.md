@@ -1,5 +1,3 @@
-# PRIVACY
-
 Short version: we hold nothing, because there's nowhere to hold it.
 
 ## Your key

@@ -1,5 +1,3 @@
-# START HERE
-
 The agent desk lives in your browser. Pick a mind, type a task, watch it work.
 
 FR!sky Paperclip 0.5.0 sits in the Chrome side panel. It plans up to 12 steps,

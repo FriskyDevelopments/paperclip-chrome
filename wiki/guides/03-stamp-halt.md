@@ -1,5 +1,3 @@
-# STAMP & HALT
-
 The safety story in one sentence: nothing touches the page without your
 stamp, and everything stops on your halt.
 

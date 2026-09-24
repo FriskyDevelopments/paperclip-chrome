@@ -1,5 +1,3 @@
-# MINDS
-
 Two minds, one desk. You bring the key, the key stays home.
 
 ## Grok

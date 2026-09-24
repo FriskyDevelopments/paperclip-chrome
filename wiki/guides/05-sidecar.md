@@ -1,5 +1,3 @@
-# SIDECAR
-
 The desk reads pages three ways, best first, and never complains when one
 is missing.
 
