@@ -1,6 +1,6 @@
 # FR!sky Paperclip for Safari
 
-The agent desk as a Safari toolbar popup. Same 0.4.0 desk as `extension/`
+The agent desk as a Safari toolbar popup. Same 0.5.0 desk as `extension/`
 (Grok/GPT minds, 12-step loop, STAMP-gated HANDS tools, HALT) — surfaced
 through `action.default_popup` because Safari has no side-panel API.
 

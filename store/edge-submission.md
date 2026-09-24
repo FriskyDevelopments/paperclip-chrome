@@ -1,9 +1,9 @@
-# Edge Add-ons submission runbook — FR!sky Paperclip 0.4.0
+# Edge Add-ons submission runbook — FR!sky Paperclip 0.5.0
 
 Parallel track to the Chrome Web Store item. Same package family, separate store.
 Docs source: [Publish a Microsoft Edge extension](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/publish-extension).
 
-## Readiness verdict: GO with the same 0.4.0 zip
+## Readiness verdict: GO with the same 0.5.0 zip
 
 - Manifest V3, MV3-native (no remote code) — Edge accepts Chrome MV3 packages.
   Extension name `FR!sky Paperclip` (16 chars, Edge limit 45). Description
@@ -15,7 +15,7 @@ Docs source: [Publish a Microsoft Edge extension](https://learn.microsoft.com/en
   (`store/edge-logo-300.png`, 300×300, ≥128px minimum). Do NOT lift the raw 128px PNG.
 
 ## Store assets (checked in)
-- `dist/frisky-paperclip-0.4.0-edge.zip` — byte copy of the CWS 0.4.0 package
+- `dist/frisky-paperclip-0.5.0-edge.zip` — byte copy of the CWS 0.5.0 package
   (renamed so Partner Center uploads don't collide in your Downloads).
 - `store/edge-logo-300.png` — 300×300 extension logo (required, per-language).
 - `store/screenshot-1.png` — 1280×800 reuse (Edge accepts 1280×800 or 640×400, max 6).
