@@ -1,4 +1,4 @@
-# App Store submission kit — FR!sky Paperclip for Safari 0.5.0
+# App Store submission kit — FR!sky Paperclip for Safari 0.7.0
 
 Parallel track to the Chrome Web Store item and the Edge Add-ons kit
 (`store/edge-submission.md`). Same desk, Safari packaging.
@@ -8,7 +8,7 @@ Parallel track to the Chrome Web Store item and the Edge Add-ons kit
 Safari Web Extensions do NOT upload as a bare zip the way Chrome/Edge do.
 They distribute through the Mac App Store **inside a macOS container app**.
 
-- `dist/frisky-paperclip-0.5.0-safari.zip` (built by
+- `dist/frisky-paperclip-0.7.0-safari.zip` (built by
   `safari/build-safari-zip.sh` from `safari/`) is the extension payload that
   goes **inside** the container app's Safari Web Extension target in Xcode.
 - The container app itself is a thin host target **still to be scaffolded**
@@ -19,7 +19,7 @@ They distribute through the Mac App Store **inside a macOS container app**.
 
 ## Store assets (checked in)
 
-- `dist/frisky-paperclip-0.5.0-safari.zip` — extension payload for the
+- `dist/frisky-paperclip-0.7.0-safari.zip` — extension payload for the
   container app target (15 files, `manifest.json` at root).
 - `store/app-icon-1024.png` — 1024×1024 app icon rendered from
   `extension/icons/mark.svg` via `rsvg-convert` (App Store requires 1024;

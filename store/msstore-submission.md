@@ -1,4 +1,4 @@
-# Microsoft Store submission kit — FR!sky Paperclip Desk 0.5.0 (native Windows app)
+# Microsoft Store submission kit — FR!sky Paperclip Desk 0.7.0 (native Windows app)
 
 Separate track from the Edge Add-ons extension (`store/edge-submission.md`).
 This is the **native WinUI 3 app** in `windows/` — packaged as MSIX, filed
@@ -19,7 +19,7 @@ captured on Windows, and the owner actions below.
   `Publisher="CN=…"` ← **replaced by Store association** (VS rewrites the
   placeholder `CN=Frisky Developments LLC` + generates
   `Package.StoreAssociation.xml` — commit that file when it exists).
-- **Version**: 0.5.0.0 (lockstep with the extension + macOS desk).
+- **Version**: 0.7.0.0 (lockstep with the extension + macOS desk).
 - **Category**: Productivity. **Age rating**: 4+ (IARC questionnaire: no
   objectionable content, no user-generated content exchange, no accounts;
   STAMP/HALT keep the agent user-gated).

@@ -11,7 +11,7 @@ the Microsoft Store (`store/msstore-submission.md`).
 |---|---|
 | `AppDelegate` panel 1100×720, min 720×480 | `MainWindow.xaml.cs` — same geometry via `AppWindow.Resize` + `OverlappedPresenter.PreferredMinimum*` |
 | `WKWebView` + `loadFileURL(index)` | WebView2, virtual host `https://paperclipdesk` mapped to `Assets\web` (file URIs are restricted for WebView2 app content; the mapping keeps `fetch`/relative paths working offline) |
-| `window.PaperclipNative={platform:'macos'}` user script | `AddScriptToExecuteOnDocumentCreatedAsync` with `platform:'windows'`, version `0.5.0` |
+| `window.PaperclipNative={platform:'macos'}` user script | `AddScriptToExecuteOnDocumentCreatedAsync` with `platform:'windows'`, version `0.7.0` |
 | STAMP (red) / HALT (ink) SwiftUI buttons → `frisky-native` CustomEvent | STAMP (`#FF334E`) / HALT (ink outline) WinUI buttons → same `frisky-native` CustomEvent via `ExecuteScriptAsync` |
 | Status-bar item + ⌥⌘P global hotkey + menu | **Not in v1** — windowed app launched from Start (see below) |
 | `build-app.sh` stages `$PAPERCLIP_PROD` → `Resources/web` | `build-windows.ps1` stages `$PAPERCLIP_PROD` → `Assets\web` |

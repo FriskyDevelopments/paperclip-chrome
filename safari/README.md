@@ -1,6 +1,6 @@
 # FR!sky Paperclip for Safari
 
-The agent desk as a Safari toolbar popup. Same 0.5.0 desk as `extension/`
+The agent desk as a Safari toolbar popup. Same 0.7.0 desk as `extension/`
 (Grok/GPT minds, 12-step loop, STAMP-gated HANDS tools, HALT) — surfaced
 through `action.default_popup` because Safari has no side-panel API.
 
@@ -50,7 +50,7 @@ just reports the sidecar as unreachable when it isn't running.
 ## How to run in Safari (unsigned, dev)
 
 1. Build the zip (optional): `safari/build-safari-zip.sh` →
-   `dist/frisky-paperclip-0.4.0-safari.zip`.
+   `dist/frisky-paperclip-0.7.0-safari.zip`.
 2. Safari Web Extensions ship inside a macOS container app: open the `safari/`
    folder as a Safari Web Extension target in Xcode
    (File → New → Target → Safari Web Extension, pointing at this folder),
