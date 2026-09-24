@@ -17,6 +17,9 @@ Adds a single "Open Paperclip desk" context-menu entry so the panel can be opene
 ### storage
 chrome.storage.local holds the user's API keys (xAI, OpenAI), the chosen mind, and the sidecar endpoint. All stay on the machine; nothing is synced or transmitted to Frisky.
 
+### debugger
+Trusted DevTools control of the active tab, used ONLY by the `takeover` tool: screenshots (Page.captureScreenshot), accessibility snapshots (DOM.*), grounded clicks and real typing (Input.*). The debugger attaches per-operation and detaches immediately after — it is never held across calls. Double-gated in code: `takeover` refuses unless the human pressed STAMP and then TAKEOVER in the same session; HALT, DISARM, or run end kills it instantly. This is why Chrome shows its "is debugging this browser" infobar during a takeover run — that banner is the feature working as designed.
+
 ### nativeMessaging
 Fallback channel to the optional Clip sidecar: if the local HTTP endpoint is unreachable, the desk asks the native host com.friskydev.paperclip for a page snapshot. Runs only when the user runs the loop.
 
@@ -37,7 +40,7 @@ The scrape tool calls the Apify Website Content Crawler (`apify~website-content-
 ## Required disclosures
 
 ### Remote code
-None. FR!sky Paperclip ships no remotely hosted code. All JavaScript is bundled in the extension package and executes locally. The only remote calls are data calls to the chosen mind's API (xAI or OpenAI), the Apify crawl API when the model calls scrape, and the user's localhost sidecar.
+None. FR!sky Paperclip ships no remotely hosted code. All JavaScript is bundled in the extension package and executes locally. The only remote calls are data calls to the chosen mind's API (xAI or OpenAI), the Apify crawl API when the model calls scrape, and the user's localhost sidecar. CDP traffic never leaves the machine — it is browser-internal automation of the user's own tab.
 
 ### Data usage
 - Each API key is stored locally (chrome.storage.local) and sent only to its own endpoint.

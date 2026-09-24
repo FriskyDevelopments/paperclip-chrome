@@ -43,6 +43,9 @@ OPTIONAL CLIP SIDECAR
 • Point the desk at a local Clip sidecar on http://127.0.0.1:7429 for fuller page snapshots.
 • Falls back to the native messaging host com.friskydev.paperclip, then degrades gracefully to read_tab.
 
+TAKEOVER MODE (STAMP, THEN TAKEOVER)
+• Press TAKEOVER after STAMP and Clip sees the page as pixels — screenshots, grounded clicks, real trusted typing via DevTools. The debugger attaches per operation and detaches immediately; HALT kills it instantly.
+
 PRICING
 $19 launch / $29 on Whop. Already included in the $49 FR!sky kit.
 https://friskydevelopments.github.io/paperclip-chrome/

@@ -17,6 +17,10 @@ When you run the loop, the extension may read the visible text of your active ta
 
 The optional `scrape` tool needs your own Apify API token. It lives in `chrome.storage.local` and is sent only to `api.apify.com` to run the Website Content Crawler, and only when the model calls scrape during a run. Crawled pages are treated as untrusted data.
 
+## Takeover mode (debugger permission)
+
+The optional `takeover` tool drives the active tab through Chrome DevTools: screenshots, accessibility snapshots, grounded clicks, real typing. It runs only when you press STAMP and then TAKEOVER, and the debugger attaches for a single operation at a time — never held. HALT, DISARM, or the end of a run kills it. All CDP traffic stays inside your browser on your machine.
+
 ## Local sidecar
 
 If you run the optional Clip sidecar, the extension talks to it on `http://127.0.0.1:7429` or via the native messaging host `com.friskydev.paperclip`. That traffic never leaves your machine.

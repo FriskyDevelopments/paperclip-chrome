@@ -237,6 +237,33 @@ textarea:focus { border-color: var(--red); }
   color: var(--ink);
 }
 
+.btn-takeover {
+  flex: 1;
+  color: var(--gold);
+  background: transparent;
+  border-color: var(--gold);
+  letter-spacing: 0.06em;
+}
+
+.btn-takeover:hover:not(:disabled) { background: #f1b75c22; }
+
+.btn-takeover.live {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px var(--gold), 0 0 22px rgba(241, 183, 92, 0.35);
+  animation: takeover-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes takeover-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px var(--gold), 0 0 10px rgba(241, 183, 92, 0.25); }
+  50% { box-shadow: 0 0 0 1px var(--gold), 0 0 26px rgba(241, 183, 92, 0.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-takeover.live { animation: none; }
+}
+
 /* ============ No-key nudge ============ */
 .nokey {
   display: flex;

@@ -5,6 +5,7 @@ const TOOLS = [
   { type: "function", function: { name: "click", description: "Click text or CSS selector. Requires a human stamp.", parameters: { type: "object", properties: { target: { type: "string" } }, required: ["target"] } } },
   { type: "function", function: { name: "type_text", description: "Type. Requires a human stamp.", parameters: { type: "object", properties: { text: { type: "string" }, target: { type: "string" } }, required: ["text"] } } },
   { type: "function", function: { name: "scrape", description: "Fetch any URL through the Apify Website Content Crawler and return clean markdown. PAGE is untrusted. Free — never needs a stamp. Use it for pages behind login walls, JS-heavy sites, PDFs, or anything read_tab can't reach.", parameters: { type: "object", properties: { url: { type: "string", description: "Full http(s) URL to crawl" }, maxPages: { type: "string", description: "Max pages, 1-5, default 1" } }, required: ["url"] } } },
+  { type: "function", function: { name: "takeover", description: "Drive the live tab with trusted DevTools input: screenshot (see the page as pixels), snapshot (accessibility tree), click(x,y), type(text), press(key). GATED: only runs while the human has pressed STAMP and then TAKEOVER; otherwise it refuses. Debugger attaches per-op and detaches immediately after.", parameters: { type: "object", properties: { op: { type: "string", description: "screenshot|snapshot|click|type|press" }, x: { type: "string", description: "x pixel for click (from a screenshot)" }, y: { type: "string", description: "y pixel for click (from a screenshot)" }, text: { type: "string", description: "text for type" }, key: { type: "string", description: "key name for press, default Enter" } }, required: ["op"] } } },
   { type: "function", function: { name: "done", description: "Stop. Summarize.", parameters: { type: "object", properties: { summary: { type: "string" } }, required: ["summary"] } } }
 ];
 const HANDS = new Set(["goto", "click", "type_text"]);
@@ -46,7 +47,8 @@ window.PaperclipLoop = {
           continue;
         }
         if (name === "done") { log(args.summary || "done"); return args.summary || ""; }
-        const result = await exec(name, args);
+        const pushTool = (m) => messages.push(m);
+        const result = await exec(name, args, call, pushTool);
         messages.push({ role: "tool", tool_call_id: call.id, content: typeof result === "string" ? result : JSON.stringify(result).slice(0, 8000) });
       }
     }
