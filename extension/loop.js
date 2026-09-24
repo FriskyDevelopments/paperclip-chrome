@@ -7,24 +7,30 @@ const TOOLS = [
   { type: "function", function: { name: "done", description: "Stop. Summarize.", parameters: { type: "object", properties: { summary: { type: "string" } }, required: ["summary"] } } }
 ];
 const HANDS = new Set(["goto", "click", "type_text"]);
-async function grokChat(key, messages) {
-  const res = await fetch("https://api.x.ai/v1/chat/completions", {
+const MINDS = {
+  xai: { label: "Grok", endpoint: "https://api.x.ai/v1/chat/completions", model: "grok-4-fast", keyUrl: "https://x.ai" },
+  openai: { label: "GPT", endpoint: "https://api.openai.com/v1/chat/completions", model: "gpt-4o-mini", keyUrl: "https://platform.openai.com" },
+};
+async function chatCompletion({ endpoint, key, model }, messages) {
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: { "content-type": "application/json", authorization: `Bearer ${key}` },
-    body: JSON.stringify({ model: "grok-4-fast", temperature: 0.2, messages, tools: TOOLS, tool_choice: "auto" }),
+    body: JSON.stringify({ model, temperature: 0.2, messages, tools: TOOLS, tool_choice: "auto" }),
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error?.message || `xAI ${res.status}`);
+  if (!res.ok) throw new Error(data.error?.message || `${new URL(endpoint).hostname} ${res.status}`);
   return data.choices?.[0]?.message;
 }
 window.PaperclipLoop = {
   max: 12,
-  async run({ key, system, user, stamped, halt, exec, log }) {
+  minds: MINDS,
+  async run({ key, mind = "xai", system, user, stamped, halt, exec, log }) {
+    const brain = MINDS[mind] || MINDS.xai;
     const messages = [{ role: "system", content: system }, { role: "user", content: user }];
     for (let i = 0; i < this.max; i++) {
       if (halt()) throw new Error("Halted.");
-      log(`step ${i + 1}/${this.max}`);
-      const msg = await grokChat(key, messages);
+      log(`step ${i + 1}/${this.max} · ${brain.label}`);
+      const msg = await chatCompletion({ endpoint: brain.endpoint, key, model: brain.model }, messages);
       messages.push(msg);
       const calls = msg.tool_calls || [];
       if (!calls.length) { log(msg.content || "done"); return msg.content || ""; }

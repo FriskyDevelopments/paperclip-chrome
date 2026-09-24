@@ -5,13 +5,13 @@ Contact: founder@friskydev.com
 
 FR!sky Paperclip ("the extension") is an agent desk for Chrome built by Frisky Developments. This policy covers everything the extension touches.
 
-## Your xAI API key
+## Your mind's API key
 
-You bring your own xAI API key. It is stored in `chrome.storage.local` on your machine. It is transmitted only to `api.x.ai` to authenticate your requests, and only when you press RUN. It is never sent to Frisky Developments or any third party.
+You pick the mind — Grok (xAI) or GPT (OpenAI) — and bring your own API key for it. It is stored in `chrome.storage.local` on your machine. It is transmitted only to that mind's API endpoint to authenticate your requests, and only when you press RUN. It is never sent to Frisky Developments or any third party.
 
 ## Page content
 
-When you run the loop, the extension may read the visible text of your active tab (or request a snapshot from your local Clip sidecar) and include it in the prompt sent to `api.x.ai`. This happens only on an explicit run that you start. Page content is treated as untrusted data inside the prompt. It is never sent anywhere else.
+When you run the loop, the extension may read the visible text of your active tab (or request a snapshot from your local Clip sidecar) and include it in the prompt sent to your mind's API. This happens only on an explicit run that you start. Page content is treated as untrusted data inside the prompt. It is never sent anywhere else.
 
 ## Local sidecar
 

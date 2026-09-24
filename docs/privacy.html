@@ -97,14 +97,14 @@
     <p>FR!sky Paperclip is an agent desk for Chrome built by Frisky Developments. This policy covers everything the extension touches — which is deliberately very little.</p>
 
     <div class="card">
-      <p><strong>The short version:</strong> your key stays on your machine, page content goes to api.x.ai only when you press RUN, and nothing is ever sent to Frisky servers. No accounts, no analytics, no data sale.</p>
+      <p><strong>The short version:</strong> your mind's API key stays on your machine, page content goes only to your mind's API and only when you press RUN, and nothing is ever sent to Frisky servers. No accounts, no analytics, no data sale.</p>
     </div>
 
-    <h2>01 — Your xAI API key</h2>
-    <p>You bring your own xAI API key. It is stored in <code>chrome.storage.local</code> on your machine. It is transmitted only to <code>api.x.ai</code> to authenticate your requests, and only when you press RUN. It is never sent to Frisky Developments or any third party.</p>
+    <h2>01 — Your mind's API key</h2>
+    <p>You pick the mind — Grok (xAI) or GPT (OpenAI) — and bring your own API key for it. The key is stored in <code>chrome.storage.local</code> on your machine. It is transmitted only to that mind's API endpoint to authenticate your requests, and only when you press RUN. It is never sent to Frisky Developments or any third party.</p>
 
     <h2>02 — Page content</h2>
-    <p>When you run the loop, the extension may read the visible text of your active tab (or request a snapshot from your local Clip sidecar) and include it in the prompt sent to <code>api.x.ai</code>. This happens only on an explicit run that you start. Page content is treated as untrusted data inside the prompt and is never sent anywhere else.</p>
+    <p>When you run the loop, the extension may read the visible text of your active tab (or request a snapshot from your local Clip sidecar) and include it in the prompt sent to your mind's API. This happens only on an explicit run that you start. Page content is treated as untrusted data inside the prompt and is never sent anywhere else.</p>
 
     <h2>03 — Local sidecar</h2>
     <p>If you run the optional Clip sidecar, the extension talks to it on <code>http://127.0.0.1:7429</code> or via the native messaging host <code>com.friskydev.paperclip</code>. That traffic never leaves your machine.</p>

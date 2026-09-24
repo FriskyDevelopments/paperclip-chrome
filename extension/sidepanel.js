@@ -36,7 +36,7 @@ const els = {
   footOptions: document.getElementById("foot-options"),
 };
 
-const state = { armed: false, halted: false, running: false };
+const state = { armed: false, halted: false, running: false, mind: "xai" };
 const isExtension = typeof chrome !== "undefined" && !!(chrome.runtime && chrome.runtime.id);
 const MOCK = new URLSearchParams(location.search).has("mock");
 
@@ -87,9 +87,11 @@ function setRunning(on) {
 }
 
 async function getSettings() {
-  const got = await chrome.storage.local.get(["xaiKey", "sidecarEndpoint"]);
+  const got = await chrome.storage.local.get(["xaiKey", "openaiKey", "mind", "sidecarEndpoint"]);
+  const mind = got.mind === "openai" ? "openai" : "xai";
   return {
-    key: got.xaiKey || "",
+    key: (mind === "openai" ? got.openaiKey : got.xaiKey) || "",
+    mind,
     sidecar: (got.sidecarEndpoint || "http://127.0.0.1:7429").replace(/\/+$/, ""),
   };
 }
@@ -236,17 +238,23 @@ async function onRun() {
   const user = els.task.value.trim();
   if (!user) { appendLog("Give Clip a task first.", "err"); return; }
   if (isExtension) {
-    try { await chrome.permissions.request({ origins: ["http://127.0.0.1:7429/*", "https://api.x.ai/*"] }); } catch (_) { /* optional */ }
+    const brain = window.PaperclipLoop.minds[mind] || window.PaperclipLoop.minds.xai;
+    try { await chrome.permissions.request({ origins: ["http://127.0.0.1:7429/*", `${new URL(brain.endpoint).origin}/*`] }); } catch (_) { /* optional */ }
   }
-  const { key } = await getSettings();
-  if (!key) { els.nokey.hidden = false; appendLog("No xAI key. Add one in Options.", "err"); return; }
+  const { key, mind } = await getSettings();
+  if (!key) {
+    els.nokey.hidden = false;
+    appendLog(`No ${window.PaperclipLoop.minds[mind].label} key. Pick your mind and add a key in Options.`, "err");
+    return;
+  }
   state.halted = false;
   setRunning(true);
   setStatus("running");
-  appendLog(`run: ${user}`, "step");
+  appendLog(`run: ${user} [${window.PaperclipLoop.minds[mind].label}]`, "step");
   try {
     const summary = await window.PaperclipLoop.run({
       key,
+      mind,
       system: SYSTEM_PROMPT,
       user,
       stamped: () => state.armed,
@@ -312,7 +320,7 @@ function init() {
   setStatus("idle");
   refreshKeyHint();
   chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === "local" && changes.xaiKey) refreshKeyHint();
+    if (area === "local" && (changes.xaiKey || changes.openaiKey || changes.mind)) refreshKeyHint();
   });
   appendLog("Desk ready. Paste a task, STAMP to arm hands, RUN to plan.", "info");
 }

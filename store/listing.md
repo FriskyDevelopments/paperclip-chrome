@@ -21,7 +21,7 @@ FR!sky Paperclip is the agent desk that lives in your Chrome side panel.
 Not Claude-in-Chrome. Not a grok.com bookmark.
 
 HOW IT WORKS
-• Type a task. Grok (grok-4-fast via the xAI API) plans and acts in up to 12 steps.
+• Pick your mind — Grok or GPT — type a task. It plans and acts in up to 12 steps.
 • Clip can read the active tab and snapshot the page for free.
 • HANDS actions — navigate, click, type — only run while you've pressed STAMP.
 • Press HALT and everything stops, instantly. Halt also disarms the hands.
@@ -34,8 +34,8 @@ SAFETY BY DESIGN
 • Every step, tool call, and result is visible in the desk log.
 
 YOUR KEY, YOUR MACHINE
-• Bring your own xAI API key. It's stored in chrome.storage.local.
-• Your key never leaves this machine. Page content goes to api.x.ai only when you press RUN.
+• Bring your own API key for your mind. It's stored in chrome.storage.local.
+• Your key never leaves this machine. Page content goes only to your mind's API, only when you press RUN.
 • No accounts. No analytics. Nothing sent to Frisky servers.
 
 OPTIONAL CLIP SIDECAR
