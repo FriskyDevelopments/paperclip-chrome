@@ -1,0 +1,20 @@
+# Installer metadata for FriskyDevelopments.PaperclipDesk
+PackageIdentifier: FriskyDevelopments.PaperclipDesk
+PackageVersion: 0.4.0
+Platform:
+- Windows.Desktop
+MinimumOSVersion: 10.0.19041.0
+InstallerType: msix
+Scope: machine
+InstallModes:
+- silent
+UpgradeBehavior: install
+ReleaseDate: 2026-09-24
+Installers:
+- Architecture: x64
+  InstallerUrl: https://github.com/FriskyDevelopments/paperclip-chrome/releases/download/v0.4.0/PaperclipDesk.msix
+  # PLACEHOLDER — the real SHA256 is unknown until the first signed .msix is
+  # built on paperclip-win. See README.md in this folder, then replace.
+  InstallerSha256: '0000000000000000000000000000000000000000000000000000000000000000'
+ManifestType: installer
+ManifestVersion: 1.9.0

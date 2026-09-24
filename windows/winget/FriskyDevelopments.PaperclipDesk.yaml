@@ -1,0 +1,21 @@
+# Package metadata for FriskyDevelopments.PaperclipDesk
+PackageIdentifier: FriskyDevelopments.PaperclipDesk
+PackageVersion: 0.4.0
+DefaultLocale: en-US
+Publisher: Frisky Developments LLC
+PublisherUrl: https://github.com/FriskyDevelopments/paperclip-chrome
+PublisherSupportUrl: https://github.com/FriskyDevelopments/paperclip-chrome/issues
+PrivacyUrl: https://github.com/FriskyDevelopments/paperclip-chrome/blob/main/PRIVACY.md
+PackageName: FR!sky Paperclip Desk
+Moniker: paperclip-desk
+Tags:
+- productivity
+- ai
+- agents
+ReleaseNotesUrl: https://github.com/FriskyDevelopments/paperclip-chrome/releases/tag/v0.4.0
+License: Proprietary
+LicenseUrl: https://github.com/FriskyDevelopments/paperclip-chrome/blob/main/PRIVACY.md
+ShortDescription: The agent desk for Windows. Grok plans up to 12 steps. Clip clicks only after you stamp. Halt anytime.
+Description: FR!sky Paperclip Desk is the agent desk as a native Windows app. Pick your mind, type a task, and it plans and acts in up to 12 steps. HANDS actions only run while you press STAMP; HALT stops everything instantly. Bring your own API key, stored on your machine. No telemetry, no accounts.
+ManifestType: version
+ManifestVersion: 1.9.0

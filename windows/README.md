@@ -43,6 +43,27 @@ the desk page calls the user's chosen mind endpoint (xAI / OpenAI) only on
 explicit RUN, plus Google Fonts. API keys stay in the app's local storage on
 the machine. Same story as the macOS desk and the browser builds.
 
+## Installers
+
+Three ways onto a machine — Store, sideload script, winget:
+
+1. **Microsoft Store** (primary path): `store/msstore-submission.md` — the
+   Store-signed MSIX. No cert steps, auto-updates.
+2. **Sideload one-liner** (`install.ps1`, no Store needed, Windows 10 19041+):
+   `irm https://raw.githubusercontent.com/FriskyDevelopments/paperclip-chrome/main/windows/install.ps1 | iex`
+   Branded header, OS-floor check, downloads `PaperclipDesk.msix` from the
+   latest GitHub release, optional `-CertUrl` (self-signed builds only: installs
+   the `.cer` to `LocalMachine\TrustedPeople`, needs admin), `Add-AppxPackage`,
+   auto-launch, Ctrl+Shift+P first-run hint. Until the first signed MSIX is
+   published the default URL fails LOUD with the reason (never a silent 404) —
+   pass `-PackageUrl` explicitly (save the file first; params can't go through
+   `| iex`).
+3. **winget** (`winget/`, STAGED — not submittable yet):
+   `FriskyDevelopments.PaperclipDesk` / Moniker `paperclip-desk`. The
+   `InstallerSha256` is the `000…0` placeholder until the first signed MSIX
+   exists; `winget/README.md` has the exact `Get-FileHash` fill-in steps, and
+   the PR to `microsoft/winget-pkgs` goes out only after that.
+
 ## Build on paperclip-win, step by step
 
 Machine: `paperclip-win` (Windows Server 2022, RDP only — see
